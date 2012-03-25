@@ -1,0 +1,32 @@
+<h1>/Task</h1>
+
+<p>
+  <b>Name</b><br>
+  <%= @task.name %>
+</p>
+
+<p>
+  <b>Frequency</b><br>
+  <%= @task.frequency %>
+</p>
+
+<p>
+  <b>Due at</b><br>
+  <%= @task.due_at %>
+</p>
+
+<p>
+  <b>Reminder at</b><br>
+  <%= @task.reminder_at %>
+</p>
+
+<p>
+  <b>Reminder sent</b><br>
+  <%= @task.reminder_sent %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', tasks_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_task_path(@task), :class => 'btn' %>
+  <%= link_to 'Delete', task_path(@task), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>
