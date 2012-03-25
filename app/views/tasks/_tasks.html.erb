@@ -1,16 +1,10 @@
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= link_to task.name, task_path(task) %></td>
+        <td><%= link_to truncate(task.name), task %></td>
         <td style="text-align: right">
-          <%= link_to content_tag(:i, "", :class => "icon-ok icon-white") + " Done", task, :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-success' %>
+          <%= link_to icon_and_text("icon-ok icon-white", "Yata!"), task, :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-success btn-mini' %>
         </td>
       </tr>
     <% end %>

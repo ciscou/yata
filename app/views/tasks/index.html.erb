@@ -5,4 +5,5 @@
 <% else %>
   <div class="well">Yahoo! Nothing to do.</div>
 <% end %>
-<%= link_to 'New', new_task_path, :class => 'btn btn-primary btn-large' %>
+
+<%= link_to icon_and_text("icon-plus icon-white", "Add another task"), new_task_path, :class => 'btn btn-primary btn-large' %>
