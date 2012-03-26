@@ -1,11 +1,5 @@
-<tr id="task_<%= task.id %>">
-  <td style="text-decoration: <%= task.done? ? "line-through" : "none" %>"><%= link_to truncate(task.name), task %></td>
-  <td style="text-align: right"><%= task.due_at.to_s(:time) %></td>
-  <td style="text-align: right">
-    <% if task.done? %>
-      <%= link_to icon_and_text("icon-remove icon-white", "Undo"), task, :remote => true, :disable_with => "Loading...", :method => :delete, :class => "btn btn-danger btn-mini" %>
-    <% else %>
-      <%= link_to icon_and_text("icon-ok icon-white", "Yata!"), task, :remote => true, :disable_with => "Loading...", :method => :delete, :class => "btn btn-success btn-mini" %>
-    <% end %>
-  </td>
+<tr id="task_<%= task.id %>" class="task <%= task.done? ? "done" : "todo" %>">
+  <td class="name"><%= link_to truncate(task.name), task %></td>
+  <td class="due_at"><%= task.due_at.to_s(:time) %></td>
+  <td class="actions"><%= link_to_destroy_task task %></td>
 </tr>

@@ -1,3 +1,11 @@
 h1 {
   margin: .75em 0;
 }
+
+tr.task.done td.name {
+  text-decoration: line-through;
+}
+
+tr.task td.actions {
+  text-align: right;
+}

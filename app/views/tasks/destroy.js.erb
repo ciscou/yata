@@ -1,1 +1,1 @@
-$("#task_<%= @task.id %>").html($("<%= j render @task %>").html())
+$("#task_<%= @task.id %>").html($("<%= j render @task %>").html()).removeClass("todo").removeClass("done").addClass("<%= @task.done? ? "done" : "todo" %>")
