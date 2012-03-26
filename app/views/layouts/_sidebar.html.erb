@@ -1,6 +1,6 @@
 <h1>Filter</h1>
 <ul class="nav nav-pills nav-stacked">
-  <li class="<%= "active" if @show == "today"    %>"><%= link_to "Today (#{Task.today.count})"     , :show => :today    %></li>
-  <li class="<%= "active" if @show == "tomorrow" %>"><%= link_to "Tomorrow (#{Task.tomorrow.count})"  , :show => :tomorrow %></li>
-  <li class="<%= "active" if @show == "all"      %>"><%= link_to "All tasks (#{Task.count})" , :show => :all      %></li>
+  <li class="<%= "active" if @show == "today"    %>"><%= link_to count_and_text(Task.today.count, "Today")      , :show => :today    %></li>
+  <li class="<%= "active" if @show == "tomorrow" %>"><%= link_to count_and_text(Task.tomorrow.count, "Tomorrow"), :show => :tomorrow %></li>
+  <li class="<%= "active" if @show == "all"      %>"><%= link_to count_and_text(Task.count, "All tasks")        , :show => :all      %></li>
 </ul>
