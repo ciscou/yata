@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(:version => 20120325190801) do
     t.string   "frequency"
     t.datetime "due_at"
     t.datetime "reminder_at"
-    t.boolean  "reminder_sent"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.boolean  "reminder_sent", :default => false
+    t.boolean  "done",          :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
 end

@@ -1,7 +1,11 @@
 <h1>Tasks</h1>
 
 <% if @tasks.any? %>
-  <%= render "tasks" %>
+  <table class="table table-striped">
+    <tbody>
+      <%= render @tasks %>
+    </tbody>
+  </table>
 <% else %>
   <div class="well">Yahoo! Nothing to do.</div>
 <% end %>
