@@ -2,7 +2,9 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @show  = params[:show]
+    @show  = "todo" unless @show.in? %w[todo done]
+    @tasks = Task.send(@show)
 
     respond_to do |format|
       format.html # index.html.erb
