@@ -1,5 +1,7 @@
 Yata::Application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    delete :clear, :on => :collection
+  end
 
   root :to => "tasks#index"
 

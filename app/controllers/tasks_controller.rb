@@ -1,75 +1,41 @@
 class TasksController < ApplicationController
-  # GET /tasks
-  # GET /tasks.json
   def index
     @show  = params[:show]
     @show  = "today" unless @show.in? %w[today tomorrow all]
     @tasks = Task.scoped
     @tasks = @tasks.todo unless @show == "all"
     @tasks = @tasks.send(@show)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @tasks }
-    end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @task }
-    end
   end
 
-  # GET /tasks/new
-  # GET /tasks/new.json
   def new
     @task = Task.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @task }
-    end
   end
 
-  # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
   end
 
-  # POST /tasks
-  # POST /tasks.json
   def create
     @task = Task.new(params[:task])
 
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      redirect_to @task, notice: 'Task was successfully created.'
+    else
+      render action: "new"
     end
   end
 
-  # PUT /tasks/1
-  # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
 
-    respond_to do |format|
-      if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.update_attributes(params[:task])
+      redirect_to @task, notice: 'Task was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
@@ -81,5 +47,11 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url }
       format.js
     end
+  end
+
+  def clear
+    Task.done.destroy_all
+
+    redirect_to tasks_path(:show => :all)
   end
 end

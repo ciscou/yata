@@ -10,4 +10,8 @@
   <div class="well">Yahoo! Nothing to do.</div>
 <% end %>
 
-<%= link_to icon_and_text("icon-plus icon-white", "Add another task"), new_task_path, :class => 'btn btn-primary btn-large' %>
+<% if @show == "all" %>
+  <%= link_to icon_and_text("icon-remove icon-white", "Clear done tasks"), clear_tasks_path, :class => 'btn btn-danger btn-large', :method => :delete %>
+<% else %>
+  <%= link_to icon_and_text("icon-plus icon-white", "Add another task"), new_task_path, :class => 'btn btn-primary btn-large' %>
+<% end %>
