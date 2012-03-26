@@ -6,4 +6,12 @@ class Task < ActiveRecord::Base
 
   scope :today   , lambda { todo.where("due_at <= ?", Time.current.end_of_day) }
   scope :tomorrow, lambda { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
+
+  def humanized_due_at
+    due_at.to_s
+  end
+
+  def humanized_due_at=(s)
+    self.due_at = Chronic.parse(s)
+  end
 end
