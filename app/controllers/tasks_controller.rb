@@ -3,8 +3,10 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @show  = params[:show]
-    @show  = "todo" unless @show.in? %w[todo done]
-    @tasks = Task.send(@show)
+    @show  = "today" unless @show.in? %w[today tomorrow all]
+    @tasks = Task.scoped
+    @tasks = @tasks.todo unless @show == "all"
+    @tasks = @tasks.send(@show)
 
     respond_to do |format|
       format.html # index.html.erb
