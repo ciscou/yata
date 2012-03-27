@@ -1,4 +1,7 @@
-<h1>Filter</h1>
+<div class="page-header">
+  <h1>Filter</h1>
+</div>
+
 <ul class="nav nav-pills nav-stacked">
   <li class="<%= "active" if @show == "today"    %>"><%= link_to count_and_text(Task.today.count, "Today")      , :show => :today    %></li>
   <li class="<%= "active" if @show == "tomorrow" %>"><%= link_to count_and_text(Task.tomorrow.count, "Tomorrow"), :show => :tomorrow %></li>
