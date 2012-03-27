@@ -7,7 +7,7 @@
 
 <p>
   <b>Due at</b><br>
-  <%= @task.due_at %>
+  <%= @task.due_at.to_s(:short) %>
 </p>
 
 <div class="form-actions">

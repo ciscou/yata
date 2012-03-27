@@ -10,10 +10,11 @@ class Task < ActiveRecord::Base
   validates :name, :due_at, :presence => true
 
   def humanized_due_at
-    due_at.to_s
+    @humanized_due_at ||= due_at.to_s
   end
 
   def humanized_due_at=(s)
+    @humanized_due_at = s
     self.due_at = Chronic.parse(s)
   end
 end
