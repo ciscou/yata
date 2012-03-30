@@ -1,0 +1,6 @@
+<%=
+  link_to(
+    count_and_text(Task.today.count, "Today"),
+    tasks_path(:show => :today)
+  )
+%>

@@ -1,0 +1,6 @@
+<%=
+  link_to(
+    count_and_text(Task.todo.count, "Todo"),
+    tasks_path(:show => :todo)
+  )
+%>
