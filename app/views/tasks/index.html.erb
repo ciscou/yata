@@ -3,16 +3,19 @@
 </div>
 
 <% if @tasks.any? %>
-  <table class="table table-striped">
-    <tbody>
-      <%= render @tasks %>
-    </tbody>
-  </table>
+  <% @tasks.group_by { |task| task.due_at.to_date }.each do |date, tasks| %>
+    <strong><%= date.to_s(:long) %></strong>
+    <table class="table table-striped">
+      <tbody>
+        <%= render tasks %>
+      </tbody>
+    </table>
+  <% end %>
 <% else %>
   <div class="well">Yahoo! Nothing to do.</div>
 <% end %>
 
-<% if @show == "all" %>
+<% if @show == "done" %>
   <%= link_to icon_and_text("icon-remove icon-white", "Clear done tasks"), clear_tasks_path, :class => 'btn btn-danger btn-large', :method => :delete %>
 <% else %>
   <%= link_to icon_and_text("icon-plus icon-white", "Add another task"), new_task_path, :class => 'btn btn-primary btn-large' %>

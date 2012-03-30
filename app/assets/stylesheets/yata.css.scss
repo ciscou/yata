@@ -4,6 +4,10 @@ tr.task.done {
   }
 }
 
-tr.task td.actions {
+tr.task td.due_at_and_actions {
   text-align: right;
+
+  span.due_at {
+    margin-right: 1em;
+  }
 }

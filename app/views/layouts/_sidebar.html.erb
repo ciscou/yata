@@ -5,5 +5,6 @@
 <ul class="nav nav-pills nav-stacked">
   <li class="<%= "active" if @show == "today"    %>"><%= link_to count_and_text(Task.today.count, "Today")      , :show => :today    %></li>
   <li class="<%= "active" if @show == "tomorrow" %>"><%= link_to count_and_text(Task.tomorrow.count, "Tomorrow"), :show => :tomorrow %></li>
-  <li class="<%= "active" if @show == "all"      %>"><%= link_to count_and_text(Task.count, "All tasks")        , :show => :all      %></li>
+  <li class="<%= "active" if @show == "todo"     %>"><%= link_to count_and_text(Task.count, "All tasks")        , :show => :todo     %></li>
+  <li class="<%= "active" if @show == "done"     %>"><%= link_to count_and_text(Task.done.count, "Done tasks")  , :show => :done     %></li>
 </ul>
