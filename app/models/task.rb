@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  SCOPES = %w[delayed today tomorrow done todo]
+  SCOPES = %w[delayed today tomorrow todo done]
 
   default_scope order(:due_at)
 
@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   scope :done, where(:done => true)
 
   scope :delayed , lambda { todo.where("due_at < ?", Time.current) }
-  scope :today   , lambda { todo.where("due_at between ? and ?", Time.current, Time.current.end_of_day) }
+  scope :today   , lambda { todo.where("due_at < ?", Time.current.end_of_day) }
   scope :tomorrow, lambda { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
 
   validates :name, :due_at, :presence => true
