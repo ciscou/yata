@@ -31,7 +31,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update_attributes(params[:task])
-      redirect_to @task, notice: 'Task was successfully updated.'
+      redirect_to tasks_url(:show => :todo), notice: 'Task was successfully updated.'
     else
       render action: "edit"
     end
