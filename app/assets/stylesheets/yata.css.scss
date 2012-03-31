@@ -1,5 +1,5 @@
 tr.task.done {
-  td.name, td.due_at {
+  td.name, td span.due_at {
     text-decoration: line-through;
   }
 }
