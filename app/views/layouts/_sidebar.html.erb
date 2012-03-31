@@ -3,7 +3,7 @@
 </div>
 
 <ul class="nav nav-pills nav-stacked">
-  <% %w[today tomorrow todo done].each do |show| %>
+  <% Task::SCOPES.each do |show| %>
     <li class="<%= show %> <%= "active" if @show == show %>"><%= render "layouts/#{ show }_link_tab" %></li>
   <% end %>
 </ul>

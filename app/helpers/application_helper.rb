@@ -3,7 +3,8 @@ module ApplicationHelper
     [content_tag(:i, "", :class => icon), text].join(" ").html_safe
   end
 
-  def count_and_text(count, text)
-    [content_tag(:span, count, :class => "badge badge-info"), text].join(" ").html_safe
+  def count_and_text(count, text, options = {})
+    level = options[:level] || :info
+    [content_tag(:span, count, :class => "badge badge-#{level}"), text].join(" ").html_safe
   end
 end

@@ -1,0 +1,6 @@
+<%=
+  link_to(
+    count_and_text(Task.delayed.count, "Delayed", :level => (:error if Task.delayed.count > 0)),
+    tasks_path(:show => :delayed)
+  )
+%>

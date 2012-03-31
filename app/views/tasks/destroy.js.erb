@@ -2,6 +2,6 @@ $("#task_<%= @task.id %>").html($("<%= j render @task %>").html())
   .removeClass("todo").removeClass("done")
   .addClass("<%= @task.done? ? "done" : "todo" %>");
 
-<% %w[today tomorrow done todo].each do |show| %>
+<% Task::SCOPES.each do |show| %>
   $(".nav.nav-pills.nav-stacked .<%= show %>").html("<%= j render "layouts/#{show}_link_tab" %>");
 <% end %>
