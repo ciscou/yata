@@ -23,6 +23,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_url(:show => :todo), notice: 'Task was successfully created.'
     else
+      flash.now.alert = "Oops, failed to create task"
       render action: "new"
     end
   end
@@ -33,6 +34,7 @@ class TasksController < ApplicationController
     if @task.update_attributes(params[:task])
       redirect_to tasks_url(:show => :todo), notice: 'Task was successfully updated.'
     else
+      flash.now.alert = "Oops, failed to update task"
       render action: "edit"
     end
   end

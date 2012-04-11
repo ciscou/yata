@@ -1,0 +1,8 @@
+<% { :alert => :error, :notice => :success }.each do |k, v| %>
+  <% if flash.key? k %>
+    <div class="alert alert-<%= v %>">
+      <a class="close" data-dismiss="alert">&times;</a>
+      <%= flash[k] %>
+    </div>
+  <% end %>
+<% end %>
