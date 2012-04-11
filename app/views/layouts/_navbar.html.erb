@@ -1,14 +1,21 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
       <%= link_to "Yata", root_path, :class => "brand" %>
-      <ul class="nav pull-right">
-        <% if user_signed_in? %>
-          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-        <% else %>
-          <li><%= link_to('Login', new_user_session_path) %></li>
-        <% end %>
-      </ul>
+      <div class="container nav-collapse">
+        <ul class="nav pull-right">
+          <% if user_signed_in? %>
+            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+          <% else %>
+            <li><%= link_to('Login', new_user_session_path) %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
