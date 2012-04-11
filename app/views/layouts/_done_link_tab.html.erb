@@ -1,6 +1,6 @@
 <%=
   link_to(
-    count_and_text(Task.done.count, "Done"),
+    count_and_text(current_user.tasks.done.count, "Done"),
     tasks_path(:show => :done)
   )
 %>

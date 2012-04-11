@@ -2,23 +2,23 @@ class TasksController < ApplicationController
   def index
     @show  = params[:show]
     @show  = "today" unless @show.in? Task::SCOPES
-    @tasks = Task.send(@show)
+    @tasks = current_user.tasks.send(@show)
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def create
-    @task = Task.new(params[:task])
+    @task = current_user.tasks.new(params[:task])
 
     if @task.save
       redirect_to tasks_url(:show => :todo), notice: 'Task was successfully created.'
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
 
     if @task.update_attributes(params[:task])
       redirect_to tasks_url(:show => :todo), notice: 'Task was successfully updated.'
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     @task.update_attributes(:done => !@task.done?)
 
     respond_to do |format|
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
   end
 
   def clear
-    Task.done.destroy_all
+    current_user.tasks.done.destroy_all
 
     redirect_to tasks_path(:show => :done)
   end

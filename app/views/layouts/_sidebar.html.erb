@@ -1,7 +1,9 @@
-<h2>Filter</h2>
+<% if user_signed_in? %>
+  <h2>Filter</h2>
 
-<ul class="nav nav-pills nav-stacked">
-  <% Task::SCOPES.each do |show| %>
-    <li class="<%= show %> <%= "active" if @show == show %>"><%= render "layouts/#{ show }_link_tab" %></li>
-  <% end %>
-</ul>
+  <ul class="nav nav-pills nav-stacked">
+    <% Task::SCOPES.each do |show| %>
+      <li class="<%= show %> <%= "active" if @show == show %>"><%= render "layouts/#{ show }_link_tab" %></li>
+    <% end %>
+  </ul>
+<% end %>

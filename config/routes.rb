@@ -1,4 +1,6 @@
 Yata::Application.routes.draw do
+  devise_for :users
+
   resources :tasks do
     delete :clear, :on => :collection
   end

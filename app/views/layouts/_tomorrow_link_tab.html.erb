@@ -1,6 +1,6 @@
 <%=
   link_to(
-    count_and_text(Task.tomorrow.count, "Tomorrow"),
+    count_and_text(current_user.tasks.tomorrow.count, "Tomorrow"),
     tasks_path(:show => :tomorrow)
   )
 %>
