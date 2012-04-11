@@ -11,6 +11,7 @@ class Task < ActiveRecord::Base
   scope :tomorrow, lambda { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
 
   validates :name, :due_at, :presence => true
+  validate  :chronic_parsed_humanized_due_at
 
   def humanized_due_at
     @humanized_due_at ||= due_at.to_s
@@ -19,5 +20,11 @@ class Task < ActiveRecord::Base
   def humanized_due_at=(s)
     @humanized_due_at = s
     self.due_at = Chronic.parse(s)
+  end
+
+  private
+
+  def chronic_parsed_humanized_due_at
+    errors.add(:humanized_due_at, "is not a valid date") unless due_at
   end
 end

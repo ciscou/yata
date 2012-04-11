@@ -1,24 +1,7 @@
-<%= form_for @task, :html => { :class => 'form-vertical' } do |f| %>
+<%= simple_form_for @task, :html => { :class => 'form-vertical' } do |f| %>
   <fieldset>
-    <div class="control-group <%= "error" if @task.errors.has_key? :name %>">
-      <%= f.label :name, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :name, :class => 'text_field span6' %>
-        <% if @task.errors.has_key? :name %>
-          <span class="help-inline"><%= @task.errors[:name].to_sentence %></span>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="control-group <%= "error" if @task.errors.has_key? :due_at %>">
-      <%= f.label :humanized_due_at, "Due at", :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :humanized_due_at, :class => 'text_field span6' %>
-        <% if @task.errors.has_key? :due_at %>
-          <span class="help-inline">Invalid date</span>
-        <% end %>
-      </div>
-    </div>
+    <%= f.input :name, :input_html => { :class => 'text_field span6' } %>
+    <%= f.input :humanized_due_at, :input_html => { :class => 'text_field span6' }, :label => "Due at" %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
