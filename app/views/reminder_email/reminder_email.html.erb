@@ -4,9 +4,10 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Reminder for task <%= @task.name.inspect %></h1>
+    <h1><%= @task.name %></h1>
     <p>
-      This task shoud be done in <%= time_ago_in_words @task.due_at %>
+      This task shoud be done in <%= time_ago_in_words @task.due_at %><br/>
+      More info <%= link_to "here", task_url(@task) %>
     </p>
   </body>
 </html>

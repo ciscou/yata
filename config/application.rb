@@ -57,5 +57,7 @@ module Yata
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+
+    config.action_mailer.default_url_options = { :host => "y-a-t-a.herokuapp.com" }
   end
 end

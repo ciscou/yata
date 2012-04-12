@@ -1,3 +1,5 @@
-Reminder for task <%= @task.name.inspect %>
+<%= @task.name %>
 
 This task shoud be done in <%= time_ago_in_words @task.due_at %>
+
+More info here: <%= task_url(@task) %>
