@@ -44,7 +44,10 @@ class TasksController < ApplicationController
     @task.update_attributes(:done => !@task.done?)
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html {
+        redirect_to tasks_url(:show => @task.done? ? :done : :todo),
+          notice: "Task was succesfully #{"un" unless @task.done?}marked as done"
+      }
       format.js
     end
   end
@@ -52,6 +55,6 @@ class TasksController < ApplicationController
   def clear
     current_user.tasks.done.destroy_all
 
-    redirect_to tasks_path(:show => :done)
+    redirect_to tasks_url(:show => :done), notice: "Done tasks were successfully cleared"
   end
 end
