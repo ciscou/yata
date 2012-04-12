@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411220140) do
+ActiveRecord::Schema.define(:version => 20120412113743) do
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.datetime "due_at"
-    t.boolean  "done",       :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "done",          :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "user_id"
+    t.boolean  "reminder_sent", :default => false
   end
 
   add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"

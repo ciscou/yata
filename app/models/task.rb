@@ -10,8 +10,19 @@ class Task < ActiveRecord::Base
   scope :today   , lambda { todo.where("due_at < ?", Time.current.end_of_day) }
   scope :tomorrow, lambda { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
 
+  scope :pending_to_send_reminder, lambda { todo.where(:reminder_sent => false).where("due_at < ?", Time.current + 1.hour) }
+
+  belongs_to :user
+
   validates :name, :due_at, :presence => true
   validate  :chronic_parsed_humanized_due_at
+
+  def self.send_reminders
+    pending_to_send_reminder.includes(:user).find_each do |task|
+      ReminderEmail.reminder_email(task).deliver
+      task.update_attribute(:reminder_sent, true)
+    end
+  end
 
   def humanized_due_at
     @humanized_due_at ||= due_at.to_s
