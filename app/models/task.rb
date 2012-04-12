@@ -10,7 +10,11 @@ class Task < ActiveRecord::Base
   scope :today   , lambda { todo.where("due_at < ?", Time.current.end_of_day) }
   scope :tomorrow, lambda { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
 
-  scope :pending_to_send_reminder, lambda { todo.where(:reminder_sent => false).where("due_at < ?", Time.current + 1.hour) }
+  scope :pending_to_send_reminder, lambda {
+    todo.where(:reminder_sent => false).
+    where("reminder_send_before_due_at is not null").
+    where("due_at - reminder_send_before_due_at * interval '1 minute' < ?", Time.current)
+  }
 
   belongs_to :user
 
