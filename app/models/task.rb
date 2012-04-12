@@ -16,6 +16,8 @@ class Task < ActiveRecord::Base
     where("due_at - reminder_send_before_due_at * interval '1 minute' < ?", Time.current)
   }
 
+  before_save :reset_reminder_sent, :if => :due_at_or_reminder_send_before_due_at_changed?
+
   belongs_to :user
 
   validates :name, :due_at, :presence => true
@@ -41,5 +43,14 @@ class Task < ActiveRecord::Base
 
   def chronic_parsed_humanized_due_at
     errors.add(:humanized_due_at, "is not a valid date") unless due_at
+  end
+
+  def reset_reminder_sent
+    self.reminder_sent = false
+    true
+  end
+
+  def due_at_or_reminder_send_before_due_at_changed?
+    due_at_changed? or reminder_send_before_due_at_changed?
   end
 end
