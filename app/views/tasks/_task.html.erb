@@ -1,5 +1,5 @@
 <tr id="task_<%= task.id %>" class="task <%= task.done? ? "done" : "todo" %>">
-  <td class="name"><%= link_to truncate(task.name), task %></td>
+  <td class="name"><%= link_to truncate(task.name, :length => 60), task %></td>
   <td class="due_at_and_actions">
     <span class="due_at"><%= task.due_at.to_s(:time) %></span>
     <%= link_to_destroy_task task %>
