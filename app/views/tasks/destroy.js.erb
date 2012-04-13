@@ -1,5 +1,8 @@
 $("#task_<%= @task.id %>").html($("<%= j render @task %>").html())
-  .removeClass("todo").removeClass("done")
+  .removeClass("todo").removeClass("done").removeClass("delayed")
+  <% if @task.delayed? %>
+    .addClass("delayed")
+  <% end %>
   .addClass("<%= @task.done? ? "done" : "todo" %>");
 
 <% Task::SCOPES.each do |show| %>
