@@ -1,0 +1,6 @@
+<%=
+  link_to(
+    count_and_text(current_user.tasks.later.count, "Later"),
+    tasks_path(:show => :later)
+  )
+%>

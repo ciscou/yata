@@ -4,6 +4,13 @@ tr.task.done {
   }
 }
 
+tr.task.delayed {
+  td.name a, td span.due_at {
+    color: #9d261d;
+    font-weight: bold;
+  }
+}
+
 tr.task td.due_at_and_actions {
   white-space: nowrap;
   text-align: right;
@@ -19,4 +26,10 @@ div.main-button {
 
 .help-inline {
   margin-bottom: 9px;
+}
+
+ul.nav-pills.nav-stacked li.divider {
+ height: 1px;
+ margin: 6px 18px;
+ border-bottom: 1px solid #eee;
 }

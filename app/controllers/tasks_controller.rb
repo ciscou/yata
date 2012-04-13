@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
     @show  = params[:show]
-    @show  = "today" unless @show.in? Task::SCOPES
+    @show  = "todo" unless @show.in? Task::SCOPES
     @tasks = current_user.tasks.send(@show)
   end
 
