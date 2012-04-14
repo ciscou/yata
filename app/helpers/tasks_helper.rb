@@ -8,4 +8,13 @@ module TasksHelper
       :method       => :delete,
       :class        => "btn btn-#{level} btn-mini"
   end
+
+  def time_ago_or_since_in_words(datetime)
+    difference = time_ago_in_words datetime
+    if datetime.past?
+      "#{difference} ago"
+    else
+      "In #{difference}"
+    end
+  end
 end

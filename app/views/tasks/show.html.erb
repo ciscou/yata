@@ -9,7 +9,18 @@
 
 <p>
   <b>Due at</b><br>
-  <%= @task.due_at.to_s(:short) %>
+  <%= time_ago_or_since_in_words @task.due_at %>
+</p>
+
+<p>
+  <b>Reminder</b><br>
+  <% if @task.reminder_send_before_due_at == 0 %>
+    On time
+  <% elsif @task.reminder_send_before_due_at.present? %>
+    <%= time_ago_in_words @task.reminder_send_before_due_at.minutes.ago %> before
+  <% else %>
+    Never
+  <% end %>
 </p>
 
 <div class="form-actions">

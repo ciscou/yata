@@ -32,7 +32,13 @@ class Task < ActiveRecord::Base
   end
 
   def humanized_due_at
-    @humanized_due_at ||= due_at.to_s
+    @humanized_due_at ||= begin
+                            if due_at
+                              due_at.to_s(:short)
+                            else
+                              ""
+                            end
+                          end
   end
 
   def humanized_due_at=(s)
