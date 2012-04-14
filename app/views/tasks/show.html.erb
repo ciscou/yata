@@ -4,7 +4,7 @@
 
 <p>
   <b>Due at <%= @task.due_at.to_s(:short) %></b><br>
-  <%= time_ago_or_since_in_words @task.due_at %>
+  <span class="<%= "delayed" if @task.delayed? %>"><%= time_ago_or_since_in_words @task.due_at %></span>
 </p>
 
 <p>
@@ -21,5 +21,5 @@
 <div class="form-actions">
   <%= link_to icon_and_text("icon-arrow-left", "Back"), tasks_path, :class => 'btn'  %>
   <%= link_to icon_and_text("icon-edit", "Edit"), edit_task_path(@task), :class => 'btn' %>
-  <%= link_to icon_and_text("icon-#{ @task.done? ? "remove" : "ok" } icon-white", @task.done? ? "Undo" : "Yata"), @task, :method => 'delete', :class => "btn btn-#{ @task.done? ? "inverse" : "success" }" %>
+  <%= link_to_destroy_task(@task, true) %>
 </div>
