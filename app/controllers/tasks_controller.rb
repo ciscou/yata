@@ -45,8 +45,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html {
-        redirect_to tasks_url(:show => @task.done? ? :done : :todo),
-          notice: "Task was succesfully #{"un" unless @task.done?}marked as done"
+        redirect_to @task, notice: "Task was succesfully #{"un" unless @task.done?}marked as done"
       }
       format.js
     end

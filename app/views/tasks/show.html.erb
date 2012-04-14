@@ -1,11 +1,6 @@
 <div class="page-header">
-  <h1>Task</h1>
+  <h1><%= @task.name %></h1>
 </div>
-
-<p>
-  <b>Name</b><br>
-  <%= @task.name %>
-</p>
 
 <p>
   <b>Due at <%= @task.due_at.to_s(:short) %></b><br>
@@ -24,7 +19,7 @@
 </p>
 
 <div class="form-actions">
-  <%= link_to 'Back', tasks_path, :class => 'btn'  %>
-  <%= link_to 'Edit', edit_task_path(@task), :class => 'btn' %>
-  <%= link_to 'Delete', task_path(@task), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to icon_and_text("icon-arrow-left", "Back"), tasks_path, :class => 'btn'  %>
+  <%= link_to icon_and_text("icon-edit", "Edit"), edit_task_path(@task), :class => 'btn' %>
+  <%= link_to icon_and_text("icon-#{ @task.done? ? "remove" : "ok" } icon-white", @task.done? ? "Undo" : "Yata"), @task, :method => 'delete', :class => "btn btn-#{ @task.done? ? "inverse" : "success" }" %>
 </div>
