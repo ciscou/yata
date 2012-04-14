@@ -9,13 +9,7 @@
 
 <p>
   <b>Reminder</b><br>
-  <% if @task.reminder_send_before_due_at == 0 %>
-    On time
-  <% elsif @task.reminder_send_before_due_at.present? %>
-    <%= time_ago_in_words @task.reminder_send_before_due_at.minutes.ago %> before
-  <% else %>
-    Never
-  <% end %>
+  <%= reminder_beforehand_due_at @task %>
 </p>
 
 <div class="form-actions">

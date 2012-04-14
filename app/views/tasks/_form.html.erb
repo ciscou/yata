@@ -2,7 +2,7 @@
   <fieldset>
     <%= f.input :name, :input_html => { :class => 'text_field span6' } %>
     <%= f.input :humanized_due_at, :input_html => { :class => 'text_field span6' }, :label => "Due at" %>
-    <%= f.input :reminder_send_before_due_at, :as => :select, :collection => { "On time" => 0, "15 minutes before" => 15, "Half an hour before" => 30, "One hour before" => 60, "One day before" => 60 * 24, "One week before" => 60 * 24 * 7 }, :include_blank => "Never", :input_html => { :class => 'select span6' }, :label => "Reminder" %>
+    <%= f.input :reminder_send_before_due_at, :as => :select, :collection => reminder_beforehand_due_at_options, :include_blank => "Never", :input_html => { :class => 'select span6' }, :label => "Reminder" %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
