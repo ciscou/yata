@@ -32,10 +32,12 @@ class Task < ActiveRecord::Base
   validate  :chronic_parsed_humanized_due_at
 
   def self.send_reminders
-    pending_to_send_reminder.includes(:user).find_each do |task|
-      ReminderEmail.reminder_email(task).deliver
-      task.update_attribute(:reminder_sent, true)
-    end
+    pending_to_send_reminder.includes(:user).find_each(&:send_reminder)
+  end
+
+  def send_reminder
+    ReminderEmail.reminder_email(self).deliver
+    update_attribute(:reminder_sent, true)
   end
 
   def humanized_due_at
