@@ -2,11 +2,13 @@
   <h2>Filter</h2>
 
   <ul class="nav nav-pills nav-stacked">
-    <% Task::SCOPES.each do |show| %>
+    <% Task::SCOPES.each do |show, text| %>
       <% if show == "todo" %>
         <li class="divider"></li>
       <% end %>
-      <li class="<%= show %> <%= "active" if @show == show %>"><%= render "layouts/#{ show }_link_tab" %></li>
+      <li class="<%= show %> <%= "active" if @show == show %>">
+        <%= render "layouts/link_pill", :show => show, :text => text %>
+      </li>
     <% end %>
   </ul>
 <% end %>

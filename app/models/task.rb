@@ -1,5 +1,12 @@
 class Task < ActiveRecord::Base
-  SCOPES = %w[delayed today tomorrow later todo done]
+  SCOPES = {
+    :delayed  => "Delayed",
+    :today    => "Today",
+    :tomorrow => "Tomorrow",
+    :later    => "Later",
+    :todo     => "See all",
+    :done     => "Done"
+  }.with_indifferent_access
 
   default_scope order(:due_at)
 
