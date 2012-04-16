@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
+  before_filter :pick_show_parameter, :only => :index
+
   def index
-    @show  = params[:show] || session[:show]
-    @show  = "todo" unless @show.in? Task::SCOPES
-    session[:show] = @show
     @tasks = current_user.tasks.send(@show)
   end
 
@@ -42,7 +41,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task = current_user.tasks.find(params[:id])
-    @task.update_attributes(:done => !@task.done?)
+    @task.toggle_done!
 
     respond_to do |format|
       format.html {
@@ -56,5 +55,13 @@ class TasksController < ApplicationController
     current_user.tasks.done.destroy_all
 
     redirect_to tasks_url(:show => :done), notice: "Done tasks were successfully cleared"
+  end
+
+  private
+
+  def pick_show_parameter
+    @show  = params[:show] || session[:show]
+    @show  = "todo" unless @show.in? Task::SCOPES
+    session[:show] = @show
   end
 end

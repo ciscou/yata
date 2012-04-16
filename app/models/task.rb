@@ -40,6 +40,10 @@ class Task < ActiveRecord::Base
     update_attribute(:reminder_sent, true)
   end
 
+  def toggle_done!
+    update_attributes!(:done => !done?)
+  end
+
   def humanized_due_at
     @humanized_due_at ||= begin
                             if due_at
