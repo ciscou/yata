@@ -1,8 +1,11 @@
 class TasksController < ApplicationController
   before_filter :pick_show_parameter, :only => :index
 
+  respond_to :html, :json
+
   def index
     @tasks = current_user.tasks.send(@show)
+    respond_with @tasks
   end
 
   def show
