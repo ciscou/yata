@@ -1,0 +1,9 @@
+guard :coffeescript, input: 'coffeescript', output: 'javascripts'
+
+guard :compass do
+  watch %r{^sass/.*\.s[ac]ss}
+end
+
+guard :haml, input: 'haml' do
+  watch %r{^haml/.+\.haml}
+end

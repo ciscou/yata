@@ -1,0 +1,36 @@
+!!! 5
+%html
+  %head
+    %title Ticket 'o' matic
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %script{type: "text/javascript", src: "/assets/jquery.js"}
+    %script{type: "text/javascript", src: "/assets/bootstrap.min.js"}
+    %script{type: "text/javascript", src: "/subx/javascripts/handlebars-1.0.0.beta.6.js"}
+    %script{type: "text/javascript", src: "/subx/javascripts/subx.js"}
+    %link{rel: "stylesheet", href: "/assets/bootstrap_and_overrides.css"}
+    %link{rel: "stylesheet", href: "/subx/stylesheets/subx.css"}
+  %body
+
+    %script#subxs-template{type: "text/x-handlebars-template"}
+      %dl
+        {{#each subxs}}
+        %dt Sub-{{sub}}
+        %dd <span class="badge badge-info">{{count}}</span>
+        {{/each}}
+
+    .container
+
+      .page-header
+        %h1 SubX
+
+      %form
+        %fieldset
+          %legend List of times
+          .control-group
+            .controls
+              %textarea#times.span12{rows: 6}
+        .control-group
+          .controls
+            %input.btn.btn-primary.btn-large.span12{type: "submit", value: "Calculate!"}
+
+      #subxs

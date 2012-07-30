@@ -1,0 +1,7 @@
+/* line 2, ../sass/subx.sass */
+#subxs dl dt {
+  display: block;
+  float: left;
+  width: 60px;
+  clear: left;
+}

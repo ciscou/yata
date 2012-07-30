@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ticket 'o' matic</title>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport' />
+    <script src='/assets/jquery.js' type='text/javascript'></script>
+    <script src='/subx/javascripts/handlebars-1.0.0.beta.6.js' type='text/javascript'></script>
+    <script src='/subx/javascripts/subx.js' type='text/javascript'></script>
+    <link href='/assets/bootstrap_and_overrides.css' rel='stylesheet' />
+    <link href='/subx/stylesheets/subx.css' rel='stylesheet' />
+  </head>
+  <body>
+    <script id='subxs-template' type='text/x-handlebars-template'>
+      <dl>
+        {{#each subxs}}
+        <dt>Sub-{{sub}}</dt>
+        <dd><span class="badge badge-info">{{count}}</span></dd>
+        {{/each}}
+      </dl>
+    </script>
+    <div class='container'>
+      <div class='page-header'>
+        <h1>SubX</h1>
+      </div>
+      <form>
+        <fieldset>
+          <legend>List of times</legend>
+          <div class='control-group'>
+            <div class='controls'>
+              <textarea class='span12' id='times' rows='6'></textarea>
+            </div>
+          </div>
+        </fieldset>
+        <div class='control-group'>
+          <div class='controls'>
+            <input class='btn btn-primary btn-large span12' type='submit' value='Calculate!' />
+          </div>
+        </div>
+      </form>
+      <div id='subxs'></div>
+    </div>
+  </body>
+</html>
