@@ -4,7 +4,7 @@
 
 <% if @tasks.any? %>
   <% @tasks.group_by { |task| task.due_at.to_date }.each do |date, tasks| %>
-    <strong><%= date.to_s(:long) %></strong>
+    <strong><%= date.strftime("%A") %>, <%= date.to_s(:long) %></strong>
     <table class="table table-striped">
       <tbody>
         <%= render tasks %>
