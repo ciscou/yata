@@ -3,6 +3,8 @@ Yata::Application.routes.draw do
 
   resources :authentication_tokens, only: :create
 
+  resources :reminders, only: :index
+
   resources :tasks do
     delete :clear, :on => :collection
   end
