@@ -35,7 +35,7 @@ module TasksHelper
   end
 
   def jquery_time_ago(datetime)
-    content_tag :abbr, format_due_at(datetime), class: "timeago", title: datetime.utc.iso8601
+    content_tag :abbr, format_due_at(datetime), class: "timeago", title: datetime.iso8601
   end
 
   def format_due_at(datetime)
