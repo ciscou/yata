@@ -3,7 +3,7 @@
 </div>
 
 <p>
-  <b>Due at <%= @task.due_at.to_s(:short) %></b><br>
+  <b>Due at <%= task_due_at @task %></b><br>
   <span class="<%= "delayed" if @task.delayed? %>"><%= time_ago_or_since_in_words @task.due_at %></span>
 </p>
 

@@ -37,6 +37,10 @@ module TasksHelper
     end
   end
 
+  def task_due_at(task)
+    task.due_at.strftime "%A, %B %d, %Y %H:%M"
+  end
+
   def task_class(task)
     [
       task.done?    ? "done"    : "todo",
