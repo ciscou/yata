@@ -15,7 +15,7 @@
 <%= form_tag task_shares_path(@task), class: "form-inline" do |f| %>
   <b>Share this task</b><br/>
   <%= label_tag :email %>
-  <%= email_field_tag :email, nil, required: true %>
+  <%= email_field_tag :email, nil, required: true, class: "input-medium" %>
   <%= submit_tag "Share", class: "btn" %>
 <% end %>
 
