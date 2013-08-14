@@ -6,4 +6,4 @@ Due at <%= format_due_at @task.due_at %>
 Reminder
 <%= reminder_beforehand_due_at @task %>
 
-You can add this task to Yata by copying and pasting this url to your browser: <%= share_accept_url(@task.id) %>
+You can add this task to Yata by copying and pasting this url to your browser: <%= share_accept_url(@task.token) %>

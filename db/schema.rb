@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705192532) do
+ActiveRecord::Schema.define(:version => 20130814211903) do
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120705192532) do
     t.integer  "user_id"
     t.boolean  "reminder_sent",               :default => false
     t.integer  "reminder_send_before_due_at"
+    t.string   "token"
   end
 
   add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
