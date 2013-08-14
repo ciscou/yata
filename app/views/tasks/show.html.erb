@@ -3,8 +3,8 @@
 </div>
 
 <p>
-  <b>Due at <%= task_due_at @task %></b><br>
-  <span class="<%= "delayed" if @task.delayed? %>"><%= time_ago_or_since_in_words @task.due_at %></span>
+  <b>Due at <%= format_due_at @task.due_at %></b><br>
+  <span class="<%= "delayed" if @task.delayed? %>"><%= jquery_time_ago @task.due_at %></span>
 </p>
 
 <p>

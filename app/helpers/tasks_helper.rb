@@ -30,15 +30,16 @@ module TasksHelper
 
   def time_ago_or_since_in_words(datetime)
     difference = time_ago_in_words datetime
-    if datetime.past?
-      "#{difference} ago"
-    else
-      "In #{difference}"
-    end
+    suffix = datetime.past? ? "ago" : "from now"
+    "#{difference} #{suffix}"
   end
 
-  def task_due_at(task)
-    task.due_at.strftime "%A, %B %d, %Y %H:%M"
+  def jquery_time_ago(datetime)
+    content_tag :abbr, format_due_at(datetime), class: "timeago", title: datetime.utc.iso8601
+  end
+
+  def format_due_at(datetime)
+    datetime.strftime "%A, %B %d, %Y %H:%M"
   end
 
   def task_class(task)

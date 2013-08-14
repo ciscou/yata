@@ -6,7 +6,7 @@
   <body>
     <h1><%= @task.name %></h1>
     <p>
-      This task shoud be done at <%= task_due_at @task %> (in <%= time_ago_in_words @task.due_at %>)<br/>
+      This task shoud be done at <%= format_due_at @task.due_at %> (in <%= time_ago_or_since_in_words @task.due_at %>)<br/>
       More info <%= link_to "here", task_url(@task) %>
     </p>
   </body>
