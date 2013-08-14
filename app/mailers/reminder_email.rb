@@ -1,4 +1,6 @@
 class ReminderEmail < ActionMailer::Base
+  helper :tasks
+
   default from: "reminders@yata.com"
 
   def reminder_email(task)
