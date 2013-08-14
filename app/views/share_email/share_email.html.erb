@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @task.name %></h1>
+
+    <p>
+      <b>Due at <%= format_due_at @task.due_at %></b><br>
+      <%= time_ago_or_since_in_words @task.due_at %>
+    </p>
+
+    <p>
+      <b>Reminder</b><br>
+      <%= reminder_beforehand_due_at @task %>
+    </p>
+
+    <p>
+      You can add this task to <%= link_to "Yata", root_url %> by clicking <%= link_to "here", share_accept_url(@task.id) %>
+    </p>
+  </body>
+</html>

@@ -12,6 +12,13 @@
   <%= reminder_beforehand_due_at @task %>
 </p>
 
+<%= form_tag task_shares_path(@task), class: "form-inline" do |f| %>
+  <b>Share this task</b><br/>
+  <%= label_tag :email %>
+  <%= email_field_tag :email, nil, required: true %>
+  <%= submit_tag :share, class: "btn" %>
+<% end %>
+
 <div class="form-actions">
   <%= link_to icon_and_text("icon-chevron-left", "Back"), tasks_path, :class => 'btn'  %>
   <%= link_to icon_and_text("icon-edit", "Edit"), edit_task_path(@task), :class => 'btn' %>

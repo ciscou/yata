@@ -6,7 +6,12 @@ Yata::Application.routes.draw do
   resources :reminders, only: :index
 
   resources :tasks do
+    resources :shares, only: :create
     delete :clear, :on => :collection
+  end
+
+  resources :shares, only: [] do
+    resource :accept, only: :show
   end
 
   root :to => "tasks#index"
