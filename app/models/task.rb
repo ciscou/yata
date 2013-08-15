@@ -41,21 +41,19 @@ class Task < ActiveRecord::Base
   end
 
   def toggle_done!
-    update_attributes!(:done => !done?)
+    toggle!(:done)
+  end
+
+  def humanized_due_at_before_type_cast
+    @humanized_due_at_before_type_cast || humanized_due_at
   end
 
   def humanized_due_at
-    @humanized_due_at ||= begin
-                            if due_at
-                              due_at.to_s(:short)
-                            else
-                              ""
-                            end
-                          end
+    due_at.to_s(:short) if due_at?
   end
 
   def humanized_due_at=(s)
-    @humanized_due_at = s
+    @humanized_due_at_before_type_cast = s
     self.due_at = Chronic.parse(s)
   end
 
