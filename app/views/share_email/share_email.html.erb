@@ -16,6 +16,20 @@
       <%= reminder_beforehand_due_at @task %>
     </p>
 
+    <% if @task.url.present? %>
+      <p>
+        <%= link_to @task.url, @task.url %>
+      </p>
+    <% end %>
+
+    <% if @task.location.present? %>
+      <p>
+        <%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location) %>
+      </p>
+    <% end %>
+
+    <%= simple_format @task.description if @task.description.present? %>
+
     <p>
       You can add this task to <%= link_to "Yata", root_url %> by clicking <%= link_to "here", share_accept_url(@task.token) %>
     </p>
