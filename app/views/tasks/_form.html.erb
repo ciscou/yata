@@ -1,8 +1,25 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#basic-info" data-toggle="tab">Basic info</a>
+  </li>
+  <li><a href="#more-stuff" data-toggle="tab">More stuff</a></li>
+</ul>
+
 <%= simple_form_for @task, :html => { :class => 'form-vertical' } do |f| %>
   <fieldset>
-    <%= f.input :name, :input_html => { :class => 'text_field span6' } %>
-    <%= f.input :humanized_due_at, :input_html => { :class => 'text_field span6' }, :label => "Due at" %>
-    <%= f.input :reminder_send_before_due_at, :as => :select, :collection => reminder_beforehand_due_at_options, :include_blank => "Never", :input_html => { :class => 'select span6' }, :label => "Reminder" %>
+    <div class="tab-content">
+      <div class="tab-pane active" id="basic-info">
+        <%= f.input :name, :input_html => { :class => 'text_field span6' } %>
+        <%= f.input :humanized_due_at, :input_html => { :class => 'text_field span6' }, :label => "Due at", :required => true %>
+        <%= f.input :reminder_send_before_due_at, :as => :select, :collection => reminder_beforehand_due_at_options, :include_blank => "Never", :input_html => { :class => 'select span6' }, :label => "Reminder" %>
+      </div>
+
+      <div class="tab-pane" id="more-stuff">
+        <%= f.input :url, :input_html => { :class => 'text_field span6' } %>
+        <%= f.input :location, :input_html => { :class => 'text_field span6' } %>
+        <%= f.input :description, :input_html => { :class => 'text_field span6', rows: 3 } %>
+      </div>
+    </div>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
