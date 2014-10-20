@@ -25,6 +25,7 @@ class Task < ActiveRecord::Base
   }
 
   before_save :reset_reminder_sent, :if => :due_at_or_reminder_send_before_due_at_changed?
+  before_save :ensure_url_has_http_protocol, :if => :url?
 
   belongs_to :user
 
@@ -77,6 +78,11 @@ class Task < ActiveRecord::Base
 
   def reset_reminder_sent
     self.reminder_sent = false
+    true
+  end
+
+  def ensure_url_has_http_protocol
+    self.url = "http://#{url}" unless url =~ %r{\Ahttps?://}
     true
   end
 
