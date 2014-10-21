@@ -15,14 +15,14 @@
 <% if @task.url.present? %>
   <p>
     <b>Url</b><br>
-    <%= link_to @task.url, @task.url %>
+    <%= link_to @task.url, @task.url, target: "_blank" %>
   </p>
 <% end %>
 
 <% if @task.location.present? %>
   <p>
     <b>Location</b><br>
-    <%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location) %>
+    <%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location), target: "_blank" %>
   </p>
 <% end %>
 
