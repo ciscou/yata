@@ -22,6 +22,7 @@
 <% if @task.location.present? %>
   <p>
     <b>Location</b><br>
+    <%= @task.location %><br>
     <%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location), target: "_blank" %>
   </p>
 <% end %>

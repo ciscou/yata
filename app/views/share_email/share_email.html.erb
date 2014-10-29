@@ -7,13 +7,7 @@
     <h1><%= @task.name %></h1>
 
     <p>
-      <b>Due at <%= format_due_at @task.due_at %></b><br>
-      <%= time_ago_or_since_in_words @task.due_at %>
-    </p>
-
-    <p>
-      <b>Reminder</b><br>
-      <%= reminder_beforehand_due_at @task %>
+      This task shoud be done at <%= format_due_at @task.due_at %> (<%= time_ago_or_since_in_words @task.due_at %>)<br/>
     </p>
 
     <% if @task.url.present? %>
@@ -24,7 +18,8 @@
 
     <% if @task.location.present? %>
       <p>
-        <%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location) %>
+        <%= @task.location %>
+        (<%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location) %>)
       </p>
     <% end %>
 

@@ -5,20 +5,26 @@
   </head>
   <body>
     <h1><%= @task.name %></h1>
+
     <p>
       This task shoud be done at <%= format_due_at @task.due_at %> (<%= time_ago_or_since_in_words @task.due_at %>)<br/>
     </p>
+
     <% if @task.url.present? %>
       <p>
         <%= link_to @task.url, @task.url %>
       </p>
     <% end %>
+
     <% if @task.location.present? %>
       <p>
-        <%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location) %>
+        <%= @task.location %>
+        (<%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location) %>)
       </p>
     <% end %>
+
     <%= simple_format @task.description if @task.description.present? %>
+
     <p>
       More info <%= link_to "here", task_url(@task) %>
     </p>
