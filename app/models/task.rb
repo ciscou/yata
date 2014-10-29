@@ -37,7 +37,7 @@ class Task < ActiveRecord::Base
   end
 
   def send_reminder
-    ReminderEmail.reminder_email(self).deliver
+    TaskMailer.reminder(self).deliver
     update_attribute(:reminder_sent, true)
   end
 
