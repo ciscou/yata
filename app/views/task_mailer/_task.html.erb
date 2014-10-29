@@ -1,7 +1,7 @@
 <h1><%= task.name %></h1>
 
 <p>
-  This task shoud be done at <%= format_due_at task.due_at %> (<%= time_ago_or_since_in_words task.due_at %>)<br/>
+  This task should be done at <%= format_due_at task.due_at %> (<%= time_ago_or_since_in_words task.due_at %>)
 </p>
 
 <% if task.url.present? %>
