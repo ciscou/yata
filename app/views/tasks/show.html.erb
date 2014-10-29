@@ -15,7 +15,7 @@
 <% if @task.url.present? %>
   <p>
     <b>Url</b><br>
-    <%= link_to truncate(@task.url, length: 50), @task.url, target: "_blank" %>
+    <%= link_to truncate(@task.url, length: 40), @task.url, target: "_blank" %>
   </p>
 <% end %>
 
