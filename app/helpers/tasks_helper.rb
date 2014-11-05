@@ -1,12 +1,14 @@
 module TasksHelper
   def link_to_destroy_task(task, show = false)
-    icon, text, level = task.done? ? %w[remove Undo inverse] : %w[ok Yata success]
+    icon, text, level = task.done? ? %w[remove Undo default] : %w[ok Yata success]
     level = "danger" if task.delayed?
-    link_to icon_and_text("icon-white icon-#{icon}", text), task,
-      :remote       => !show,
-      :disable_with => "...",
-      :method       => :delete,
-      :class        => "btn btn-#{level} #{"btn-mini" unless show}"
+    link_to icon_and_text(icon, text), task,
+      remote: !show,
+      method: :delete,
+      class:  "btn btn-#{level} #{"btn-xs" unless show}",
+      data: {
+        disable_with: "..."
+      }
   end
 
   def reminder_beforehand_due_at(task)

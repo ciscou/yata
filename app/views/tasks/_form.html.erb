@@ -1,29 +1,61 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs nav-justified">
   <li class="active">
     <a href="#basic-info" data-toggle="tab">Basic info</a>
   </li>
   <li><a href="#more-stuff" data-toggle="tab">More stuff</a></li>
 </ul>
+<p></p>
 
-<%= simple_form_for @task, :html => { :class => 'form-vertical' } do |f| %>
-  <fieldset>
-    <div class="tab-content">
-      <div class="tab-pane active" id="basic-info">
-        <%= f.input :name, :input_html => { :class => 'text_field span6' } %>
-        <%= f.input :humanized_due_at, :input_html => { :class => 'text_field span6' }, :label => "Due at", :required => true %>
-        <%= f.input :reminder_send_before_due_at, :as => :select, :collection => reminder_beforehand_due_at_options, :include_blank => "Never", :input_html => { :class => 'select span6' }, :label => "Reminder" %>
+<%= form_for @task do |f| %>
+  <div class="tab-content">
+    <div class="tab-pane active" id="basic-info">
+      <div class="form-group">
+        <%= f.label :name %>
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
       </div>
-
-      <div class="tab-pane" id="more-stuff">
-        <%= f.input :url, :input_html => { :class => 'text_field span6' } %>
-        <%= f.input :location, :input_html => { :class => 'text_field span6' } %>
-        <%= f.input :description, :input_html => { :class => 'text_field span6', :rows => 3 } %>
+      <div class="form-group">
+        <%= f.label :humanized_due_at, "Due at" %>
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-time"></span></div>
+          <%= f.text_field :humanized_due_at, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :reminder_send_before_due_at, "Reminder" %>
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-bell"></span></div>
+          <%= f.select :reminder_send_before_due_at, reminder_beforehand_due_at_options, {}, class: "form-control" %>
+        </div>
       </div>
     </div>
 
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', @task.persisted? ? @task : tasks_path, :class => 'btn' %>
+    <div class="tab-pane" id="more-stuff">
+      <div class="form-group">
+        <%= f.label :url %>
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></div>
+          <%= f.text_field :url, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :location %>
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
+          <%= f.text_field :location, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control", rows: 3 %>
+      </div>
     </div>
-  </fieldset>
+  </div>
+
+  <p>
+    <%= f.submit nil, class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', @task.persisted? ? @task : tasks_path, class: 'btn btn-default' %>
+  </p>
 <% end %>

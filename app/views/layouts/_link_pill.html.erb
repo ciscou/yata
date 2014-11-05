@@ -1,6 +1,6 @@
 <%=
   link_to(
-    count_and_text(current_user.tasks.send(show).count, text, :level => (:error if show == "delayed" && current_user.tasks.delayed.any?)),
+    count_and_text(current_user.tasks.send(show).count, text, :level => (:danger if show == "delayed" && current_user.tasks.delayed.any?)),
     tasks_path(:show => show)
   )
 %>

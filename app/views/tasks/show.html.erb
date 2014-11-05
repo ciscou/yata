@@ -36,12 +36,22 @@
 
 <%= form_tag task_shares_path(@task), class: "form-inline" do |f| %>
   <b>Share this task</b><br/>
-  <%= email_field_tag :email, nil, required: true, placeholder: "e-mail", style: "width: 190px" %>
-  <%= submit_tag "Share", class: "btn" %>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-share-alt"></span>
+      </span>
+      <%= email_field_tag :email, nil, required: true, placeholder: "somebody@example.com", class: "form-control" %>
+      <span class="input-group-btn">
+        <%= submit_tag "Share", class: "btn btn-default" %>
+      </span>
+    </div>
+  </div>
 <% end %>
 
-<div class="form-actions">
-  <%= link_to icon_and_text("icon-chevron-left", "Back"), tasks_path, :class => 'btn'  %>
-  <%= link_to icon_and_text("icon-edit", "Edit"), edit_task_path(@task), :class => 'btn' %>
+<p></p>
+<p>
+  <%= link_to icon_and_text("chevron-left", "Back"), tasks_path, class: 'btn btn-default'  %>
+  <%= link_to icon_and_text("edit", "Edit"), edit_task_path(@task), class: 'btn btn-default' %>
   <%= link_to_destroy_task(@task, true) %>
-</div>
+</p>

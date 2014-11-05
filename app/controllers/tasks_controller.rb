@@ -21,7 +21,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.tasks.new(params[:task])
+    @task = current_user.tasks.new(task_attributes)
 
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   def update
     @task = current_user.tasks.find(params[:id])
 
-    if @task.update_attributes(params[:task])
+    if @task.update_attributes(task_attributes)
       redirect_to @task, notice: 'Task was successfully updated.'
     else
       flash.now.alert = "Oops, failed to update task"
@@ -66,5 +66,9 @@ class TasksController < ApplicationController
     @show  = params[:show] || session[:show]
     @show  = "todo" unless @show.in? Task::SCOPES
     session[:show] = @show
+  end
+
+  def task_attributes
+    params.require(:task).permit!
   end
 end
