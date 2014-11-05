@@ -1,8 +1,6 @@
 Yata::Application.routes.draw do
   devise_for :users
 
-  resources :authentication_tokens, only: :create
-
   resources :reminders, only: :index
 
   resources :tasks do

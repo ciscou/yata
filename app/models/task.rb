@@ -8,10 +8,10 @@ class Task < ActiveRecord::Base
     :done     => "Done"
   }.with_indifferent_access
 
-  default_scope order(:due_at)
+  default_scope lambda { order(:due_at) }
 
-  scope :todo, where(:done => false)
-  scope :done, where(:done => true)
+  scope :todo, lambda { where(:done => false) }
+  scope :done, lambda { where(:done => true) }
 
   scope :delayed , lambda { todo.where("due_at < ?", Time.current) }
   scope :today   , lambda { todo.where("due_at > ? and due_at < ?", Time.current, Time.current.end_of_day) }
