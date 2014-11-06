@@ -5,6 +5,8 @@ tr.task.done {
 }
 
 tr.task.delayed {
+  @extend .danger;
+
   td.name a, td span.due_at {
     color: #9d261d;
     font-weight: bold;
