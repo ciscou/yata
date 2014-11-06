@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1>Tasks</h1>
-</div>
+<h1>Tasks</h1>
 
 <% if @tasks.any? %>
   <% @tasks.group_by { |task| task.due_at.to_date }.each do |date, tasks| %>

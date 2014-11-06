@@ -1,7 +1,7 @@
-<div class="page-header">
-  <h1><%= @task.name %></h1>
-</div>
+<h1><%= @task.name %></h1>
 
+<div class="row">
+<div class="col-md-9 col-lg-8">
 <p>
   <b>Due at <%= format_due_at @task.due_at %></b><br>
   <span class="<%= "delayed" if @task.delayed? %>"><%= jquery_time_ago @task.due_at %></span>
@@ -34,7 +34,7 @@
   <%= simple_format @task.description %>
 <% end %>
 
-<%= form_tag task_shares_path(@task), class: "form-inline" do |f| %>
+<%= form_tag task_shares_path(@task) do |f| %>
   <b>Share this task</b><br/>
   <div class="form-group">
     <div class="input-group">
@@ -50,8 +50,10 @@
 <% end %>
 
 <p></p>
-<p>
+<div class="btn-group btn-group-justified">
   <%= link_to icon_and_text("chevron-left", "Back"), tasks_path, class: 'btn btn-default'  %>
   <%= link_to icon_and_text("edit", "Edit"), edit_task_path(@task), class: 'btn btn-default' %>
   <%= link_to_destroy_task(@task, true) %>
-</p>
+</div>
+</div>
+</div>
