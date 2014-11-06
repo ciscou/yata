@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs nav-justified">
+<ul class="nav nav-tabs">
   <li class="active">
     <a href="#basic-info" data-toggle="tab">Basic info</a>
   </li>
@@ -9,19 +9,25 @@
 <%= form_for @task do |f| %>
   <div class="tab-content">
     <div class="tab-pane active" id="basic-info">
-      <div class="form-group">
+      <div class="form-group <%= "has-error" if @task.errors[:name].any? %>">
         <%= f.label :name %>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
           <%= f.text_field :name, class: "form-control" %>
         </div>
+        <% if @task.errors[:name].any? %>
+          <p class="help-block"><%= @task.errors[:name].to_sentence %></p>
+      <% end %>
       </div>
-      <div class="form-group">
+      <div class="form-group <%= "has-error" if @task.errors[:humanized_due_at].any? %>">
         <%= f.label :humanized_due_at, "Due at" %>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-time"></span></div>
           <%= f.text_field :humanized_due_at, class: "form-control" %>
         </div>
+        <% if @task.errors[:humanized_due_at].any? %>
+          <p class="help-block"><%= @task.errors[:humanized_due_at].to_sentence %></p>
+      <% end %>
       </div>
       <div class="form-group">
         <%= f.label :reminder_send_before_due_at, "Reminder" %>
