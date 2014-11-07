@@ -114,6 +114,6 @@ class Task < ActiveRecord::Base
   end
 
   def reminder_params_changed?
-    due_at_changed? || repeat_every_changed? || reminder?
+    due_at_changed? || repeat_every_changed? || reminder_changed?
   end
 end
