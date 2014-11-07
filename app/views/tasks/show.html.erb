@@ -8,8 +8,13 @@
 </p>
 
 <p>
+  <b>Repeat every</b><br>
+  <%= @task.repeat_every.presence || "Only once" %>
+</p>
+
+<p>
   <b>Reminder</b><br>
-  <%= reminder_beforehand_due_at @task %>
+  <%= reminder_options.key(@task.reminder) || "Never" %>
 </p>
 
 <% if @task.url.present? %>

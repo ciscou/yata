@@ -19,17 +19,17 @@ class Task < ActiveRecord::Base
   scope :later   , -> { todo.where("due_at > ?", Time.current.tomorrow.end_of_day) }
 
   scope :pending_to_send_reminder, -> {
-    todo.where(:reminder_sent => false).
-    where("reminder_send_before_due_at is not null").
-    where("due_at - reminder_send_before_due_at * interval '1 minute' < ?", Time.current)
+    todo.where(reminder_sent: false).
+    where("reminder is not null").
+    where("due_at - reminder * interval '1 minute' < ?", Time.current)
   }
 
-  before_save :reset_reminder_sent, :if => :due_at_or_reminder_send_before_due_at_changed?
-  before_save :ensure_url_has_http_protocol, :if => :url?
+  before_save :reset_reminder_sent, if: :reminder_params_changed?
+  before_save :ensure_url_has_http_protocol, if: :url?
 
   belongs_to :user
 
-  validates :name, :due_at, :presence => true
+  validates :name, :due_at, presence: true
   validate  :chronic_parsed_humanized_due_at
 
   def self.send_reminders
@@ -41,8 +41,26 @@ class Task < ActiveRecord::Base
     update_attribute(:reminder_sent, true)
   end
 
-  def toggle_done!
-    toggle!(:done)
+  def mark_as_done!
+    if repeat_every?
+      self.due_at += periodicity
+      save!
+      self.done = true # after saving on purpose
+    else
+      self.done = true
+      save!
+    end
+  end
+
+  def unmark_as_done!
+    if repeat_every?
+      self.due_at -= periodicity
+      save!
+      self.done = false # after saving on purpose
+    else
+      self.done = false
+      save!
+    end
   end
 
   def humanized_due_at_before_type_cast
@@ -71,10 +89,15 @@ class Task < ActiveRecord::Base
   end
 
   def build_accept_for(user)
-    user.tasks.new attributes.slice("name", "due_at", "reminder_send_before_due_at", "url", "location", "description")
+    user.tasks.new attributes.slice("name", "due_at", "repeat_every", "reminder", "url", "location", "description")
   end
 
   private
+
+  def periodicity
+    n, s = repeat_every.split
+    n.to_i.send(s)
+  end
 
   def chronic_parsed_humanized_due_at
     errors.add(:humanized_due_at, "is not a valid date") unless due_at
@@ -90,7 +113,7 @@ class Task < ActiveRecord::Base
     true
   end
 
-  def due_at_or_reminder_send_before_due_at_changed?
-    due_at_changed? || reminder_send_before_due_at_changed?
+  def reminder_params_changed?
+    due_at_changed? || repeat_every_changed? || reminder?
   end
 end

@@ -10,6 +10,7 @@ class TasksController < ApplicationController
 
   def show
     @task = current_user.tasks.find(params[:id])
+    @task.done = true if flash[:just_done]
   end
 
   def new
@@ -42,15 +43,28 @@ class TasksController < ApplicationController
     end
   end
 
-  def destroy
+  def mark_as_done
     @task = current_user.tasks.find(params[:id])
-    @task.toggle_done!
+    @task.mark_as_done!
 
     respond_to do |format|
       format.html {
-        redirect_to @task, notice: "Task was succesfully #{"un" unless @task.done?}marked as done"
+        flash[:just_done] = true
+        redirect_to @task, notice: "Task was succesfully marked as done"
       }
       format.js
+    end
+  end
+
+  def unmark_as_done
+    @task = current_user.tasks.find(params[:id])
+    @task.unmark_as_done!
+
+    respond_to do |format|
+      format.html {
+        redirect_to @task, notice: "Task was succesfully unmarked as done"
+      }
+      format.js { render :mark_as_done }
     end
   end
 
