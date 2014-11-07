@@ -1,24 +1,24 @@
 class Task < ActiveRecord::Base
   SCOPES = {
-    :delayed  => "Delayed",
-    :today    => "Today",
-    :tomorrow => "Tomorrow",
-    :later    => "Later",
-    :todo     => "See all",
-    :done     => "Done"
+    delayed:  "Delayed",
+    today:    "Today",
+    tomorrow: "Tomorrow",
+    later:    "Later",
+    todo:     "See all",
+    done:     "Done"
   }.with_indifferent_access
 
-  default_scope lambda { order(:due_at) }
+  default_scope -> { order(:due_at) }
 
-  scope :todo, lambda { where(:done => false) }
-  scope :done, lambda { where(:done => true) }
+  scope :todo, -> { where(done: false) }
+  scope :done, -> { where(done: true) }
 
-  scope :delayed , lambda { todo.where("due_at < ?", Time.current) }
-  scope :today   , lambda { todo.where("due_at > ? and due_at < ?", Time.current, Time.current.end_of_day) }
-  scope :tomorrow, lambda { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
-  scope :later   , lambda { todo.where("due_at > ?", Time.current.tomorrow.end_of_day) }
+  scope :delayed , -> { todo.where("due_at < ?", Time.current) }
+  scope :today   , -> { todo.where("due_at > ? and due_at < ?", Time.current, Time.current.end_of_day) }
+  scope :tomorrow, -> { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
+  scope :later   , -> { todo.where("due_at > ?", Time.current.tomorrow.end_of_day) }
 
-  scope :pending_to_send_reminder, lambda {
+  scope :pending_to_send_reminder, -> {
     todo.where(:reminder_sent => false).
     where("reminder_send_before_due_at is not null").
     where("due_at - reminder_send_before_due_at * interval '1 minute' < ?", Time.current)
@@ -59,15 +59,19 @@ class Task < ActiveRecord::Base
   end
 
   def todo?
-    not done?
+    !done?
   end
 
   def delayed?
-    todo? and due_at.past?
+    todo? && due_at.past?
   end
 
   def ensure_token!
     update_attributes!(token: SecureRandom.hex) unless token?
+  end
+
+  def build_accept_for(user)
+    user.tasks.new attributes.slice("name", "due_at", "reminder_send_before_due_at", "url", "location", "description")
   end
 
   private
@@ -87,6 +91,6 @@ class Task < ActiveRecord::Base
   end
 
   def due_at_or_reminder_send_before_due_at_changed?
-    due_at_changed? or reminder_send_before_due_at_changed?
+    due_at_changed? || reminder_send_before_due_at_changed?
   end
 end
