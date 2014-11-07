@@ -1,3 +1,7 @@
+.navbar-brand {
+  padding: 8px 15px;
+}
+
 tr.task.done {
   td.name, td span.due_at {
     text-decoration: line-through;
