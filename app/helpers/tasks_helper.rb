@@ -6,7 +6,7 @@ module TasksHelper
     link_to icon_and_text(icon, text), [action, task],
       remote: !show,
       method: :patch,
-      class:  "btn btn-#{level} #{"btn-xs" unless show}",
+      class:  "btn btn-#{level} #{show ? "btn-lg" : "btn-xs"}",
       data: {
         disable_with: "..."
       }

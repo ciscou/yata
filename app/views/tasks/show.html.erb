@@ -1,7 +1,6 @@
 <h1><%= @task.name %></h1>
 
-<div class="row">
-<div class="col-md-9 col-lg-8">
+<div class="row"><div class="col-md-10 col-lg-8">
 <p>
   <b>Due at <%= format_due_at @task.due_at %></b><br>
   <span class="<%= "delayed" if @task.delayed? %>"><%= jquery_time_ago @task.due_at %></span>
@@ -46,7 +45,7 @@
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-share-alt"></span>
       </span>
-      <%= email_field_tag :email, nil, required: true, placeholder: "somebody@example.com", class: "form-control" %>
+      <%= email_field_tag :email, nil, required: true, placeholder: "someone@example.com", class: "form-control" %>
       <span class="input-group-btn">
         <%= submit_tag "Share", class: "btn btn-default" %>
       </span>
@@ -55,10 +54,7 @@
 <% end %>
 
 <p></p>
-<div class="btn-group btn-group-justified">
-  <%= link_to icon_and_text("chevron-left", "Back"), tasks_path, class: 'btn btn-default'  %>
-  <%= link_to icon_and_text("edit", "Edit"), edit_task_path(@task), class: 'btn btn-default' %>
-  <%= link_to_destroy_task(@task, true) %>
-</div>
-</div>
-</div>
+<%= link_to icon_and_text("chevron-left", "Back"), tasks_path, class: 'btn btn-default'  %>
+<%= link_to icon_and_text("edit", "Edit"), edit_task_path(@task), class: 'btn btn-default' %>
+<%= link_to_destroy_task(@task, true) %>
+</div></div>

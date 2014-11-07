@@ -1,39 +1,65 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h1>Edit <%= resource_name.to_s.humanize %></h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="row"><div class="col-md-10 col-lg-8">
+  <div class="form-group <%= "has-error" if resource.errors[:email].any? %>">
+    <%= f.label :email, class: "control-label" %><br />
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+      <%= f.email_field :email, class: "form-control", placeholder: "someone@example.com", autofocus: true %>
+    </div>
+    <% if resource.errors[:email].any? %>
+      <p class="help-block"><%= resource.errors[:email].to_sentence %></p>
+    <% end %>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group <%= "has-error" if resource.errors[:password].any? %>">
+    <%= f.label :password, class: "control-label" %>
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+      <%= f.password_field :password, class: "form-control", placeholder: "************", autocomplete: "off" %>
+    </div>
+    <% if resource.errors[:password].any? %>
+      <p class="help-block"><%= resource.errors[:password].to_sentence %></p>
+    <% else %>
+      <p class="help-block">leave blank if you don't want to change it</p>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group <%= "has-error" if resource.errors[:password_confirmation].any? %>">
+    <%= f.label :password_confirmation, class: "control-label" %>
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "************", autocomplete: "off" %>
+    </div>
+    <% if resource.errors[:password_confirmation].any? %>
+      <p class="help-block"><%= resource.errors[:password_confirmation].to_sentence %></p>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+  <div class="form-group <%= "has-error" if resource.errors[:current_password].any? %>">
+    <%= f.label :current_password, class: "control-label" %>
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+      <%= f.password_field :current_password, class: "form-control", placeholder: "************", autocomplete: "off" %>
+    </div>
+    <% if resource.errors[:current_password].any? %>
+      <p class="help-block"><%= resource.errors[:current_password].to_sentence %></p>
+    <% else %>
+      <p class="help-block">we need your current password to confirm your changes</p>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="form-group">
+    <%= f.submit "Update", class: "btn btn-lg btn-block btn-success" %>
   </div>
+</div></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h2>Cancel my account</h2>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to :back, class: "btn btn-default" do %>
+  <span class="glyphicon glyphicon-chevron-left"></span> Back
+<% end %>

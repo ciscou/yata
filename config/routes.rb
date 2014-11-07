@@ -1,5 +1,5 @@
 Yata::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
 
   resources :reminders, only: :index
 

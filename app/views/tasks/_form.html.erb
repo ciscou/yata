@@ -7,6 +7,7 @@
 <p></p>
 
 <%= form_for @task do |f| %>
+<div class="row"><div class="col-md-10 col-lg-8">
   <div class="tab-content">
     <div class="tab-pane active" id="basic-info">
       <div class="form-group <%= "has-error" if @task.errors[:name].any? %>">
@@ -17,7 +18,7 @@
         </div>
         <% if @task.errors[:name].any? %>
           <p class="help-block"><%= @task.errors[:name].to_sentence %></p>
-      <% end %>
+        <% end %>
       </div>
       <div class="form-group <%= "has-error" if @task.errors[:humanized_due_at].any? %>">
         <%= f.label :humanized_due_at, "Due at", class: "control-label" %>
@@ -27,7 +28,7 @@
         </div>
         <% if @task.errors[:humanized_due_at].any? %>
           <p class="help-block"><%= @task.errors[:humanized_due_at].to_sentence %></p>
-      <% end %>
+        <% end %>
       </div>
       <div class="form-group">
         <%= f.label :repeat_every, class: "control-label" %>
@@ -67,8 +68,9 @@
     </div>
   </div>
 
-  <p>
-    <%= f.submit nil, class: 'btn btn-primary' %>
+  <div class="form-group">
+    <%= f.submit nil, class: 'btn btn-success btn-lg' %>
     <%= link_to 'Cancel', @task.persisted? ? @task : tasks_path, class: 'btn btn-default' %>
-  </p>
+  </div>
+</div></div>
 <% end %>
