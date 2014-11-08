@@ -12,7 +12,10 @@
   <div class="tab-content">
     <div class="tab-pane active" id="basic-info">
       <div class="form-group <%= "has-error" if @task.errors[:name].any? %>">
-        <%= f.label :name, class: "control-label" %>
+        <%= f.label :name, class: "control-label" do %>
+          * Name
+          <small class="text-muted">The only required field!</small>
+        <% end %>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
           <%= f.text_field :name, class: "form-control" %>
