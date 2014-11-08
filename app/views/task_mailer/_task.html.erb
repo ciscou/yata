@@ -7,7 +7,7 @@
 <% if task.sub_tasks.any? %>
   <ul>
     <% task.sub_tasks.each do |sub_task| %>
-      <li><%= sub_task %></li>
+      <li><%= sub_task.name %></li>
     <% end %>
   </ul>
 <% end %>
