@@ -24,7 +24,7 @@ class Task < ActiveRecord::Base
     where("due_at - reminder * interval '1 minute' < ?", Time.current)
   }
 
-  has_many :sub_tasks
+  has_many :sub_tasks, dependent: :destroy
 
   accepts_nested_attributes_for :sub_tasks, allow_destroy: true, reject_if: :all_blank
 
