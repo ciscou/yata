@@ -16,6 +16,13 @@
   <%= reminder_options.key(@task.reminder) || "Never" %>
 </p>
 
+<% if @task.sub_tasks.any? %>
+  <p>
+    <strong>Sub tasks</strong>
+    <%= render @task.sub_tasks %>
+  </p>
+<% end %>
+
 <% if @task.url.present? %>
   <p>
     <strong>Url</strong><br>

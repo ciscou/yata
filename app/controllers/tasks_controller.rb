@@ -1,11 +1,8 @@
 class TasksController < ApplicationController
-  before_filter :pick_show_parameter, :only => :index
-
-  respond_to :html, :json
+  before_filter :pick_show_parameter, only: :index
 
   def index
     @tasks = current_user.tasks.send(@show)
-    respond_with @tasks
   end
 
   def show
@@ -73,7 +70,7 @@ class TasksController < ApplicationController
   def clear
     current_user.tasks.done.destroy_all
 
-    redirect_to tasks_url(:show => :done), notice: "Done tasks were successfully cleared"
+    redirect_to tasks_url(show: 'done'), notice: "Done tasks were successfully cleared"
   end
 
   private
