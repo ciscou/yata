@@ -1,9 +1,9 @@
 <h1><%= @task.name %></h1>
 
 <div class="row"><div class="col-md-10 col-lg-8">
-<p>
+<p class="<%= "text-danger" if @task.delayed? %>">
   <b>Due at <%= format_due_at @task.due_at %></b><br>
-  <span class="<%= "delayed" if @task.delayed? %>"><%= jquery_time_ago @task.due_at %></span>
+  <span><%= jquery_time_ago @task.due_at %></span>
 </p>
 
 <p>

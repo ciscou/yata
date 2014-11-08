@@ -12,8 +12,7 @@ tr.task.delayed {
   @extend .danger;
 
   td.name a, td span.due_at {
-    color: #9d261d;
-    font-weight: bold;
+    @extend .text-danger;
   }
 }
 
@@ -30,18 +29,14 @@ body {
   margin-bottom: 24px;
 }
 
-.help-inline {
-  margin-bottom: 9px;
-}
-
 p.collapse-bottom {
   margin-bottom: 0;
 }
 
 ul.nav-pills.nav-stacked {
-  li.delayed a span.error {
-    color: #9d261d;
-    font-weight: bold;
+  span.label {
+    display: inline-block;
+    min-width: 2.5em;
   }
 
   li.divider {
@@ -49,11 +44,6 @@ ul.nav-pills.nav-stacked {
     margin: 6px 18px;
     border-bottom: 1px solid #eee;
   }
-}
-
-span.delayed {
-  color: #9d261d;
-  font-weight: bold;
 }
 
 abbr.timeago {
