@@ -50,6 +50,13 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.2)
+    haml (4.0.5)
+      tilt
+    haml-rails (0.5.3)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 3.1, < 5.0)
+      railties (>= 4.0.1)
     hike (1.2.3)
     i18n (0.6.11)
     jquery-rails (3.1.2)
@@ -119,6 +126,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.0.1)
   devise
+  haml-rails
   jquery-rails
   newrelic_rpm
   pg
