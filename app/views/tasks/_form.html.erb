@@ -2,6 +2,7 @@
   <li class="active">
     <a href="#basic-info" data-toggle="tab">Basic info</a>
   </li>
+  <li><a href="#sub-tasks" data-toggle="tab">Sub tasks</a></li>
   <li><a href="#more-stuff" data-toggle="tab">More stuff</a></li>
 </ul>
 <p></p>
@@ -43,6 +44,18 @@
           <div class="input-group-addon"><span class="glyphicon glyphicon-bell"></span></div>
           <%= f.select :reminder, reminder_options, { include_blank: "Never" }, class: "form-control" %>
         </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="sub-tasks">
+      <%= f.fields_for :sub_tasks do |sub_task_form| %>
+        <%= render "sub_task_fields", f: sub_task_form %>
+      <% end %>
+      <div class="form-group">
+        <%= link_to_add_association f, :sub_tasks, class: "btn btn-default btn-block" do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          Add another
+        <% end %>
       </div>
     </div>
 

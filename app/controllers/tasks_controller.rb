@@ -15,10 +15,12 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.new
+    @task.sub_tasks.build
   end
 
   def edit
     @task = current_user.tasks.find(params[:id])
+    @task.sub_tasks.build
   end
 
   def create
