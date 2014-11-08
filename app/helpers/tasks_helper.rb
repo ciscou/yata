@@ -8,7 +8,7 @@ module TasksHelper
       method: :patch,
       class:  "btn btn-#{level} #{show ? "btn-lg" : "btn-xs"}",
       data: {
-        disable_with: "..."
+        disable_with: "Wait..."
       }
   end
 
