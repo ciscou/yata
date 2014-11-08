@@ -14,16 +14,16 @@ module TasksHelper
 
   def reminder_options
     {
-      "On time"             => 0.seconds,
-      "15 minutes before"   => 15.minutes,
-      "Half an hour before" => 30.minutes,
-      "One hour before"     => 1.hour,
-      "Two hours before"    => 2.hours,
-      "Three hours before"  => 3.hours,
-      "Six hours before"    => 6.hours,
-      "Twelve hours before" => 12.hours,
-      "One day before"      => 1.day,
-      "One week before"     => 1.week
+      "On time"             => 0,
+      "15 minutes before"   => 15,
+      "Half an hour before" => 30,
+      "One hour before"     => 60,
+      "Two hours before"    => 60 * 2,
+      "Three hours before"  => 60 * 3,
+      "Six hours before"    => 60 * 6,
+      "Twelve hours before" => 60 * 12,
+      "One day before"      => 60 * 24,
+      "One week before"     => 60 * 24 * 7
     }
   end
 
