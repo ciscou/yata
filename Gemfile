@@ -13,6 +13,7 @@ gem 'autoprefixer-rails'
 gem 'chronic'
 gem 'devise'
 gem 'newrelic_rpm'
+gem 'redcarpet'
 
 # Gems used only for assets and not required
 # in production environments by default.

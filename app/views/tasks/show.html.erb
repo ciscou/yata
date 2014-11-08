@@ -2,44 +2,41 @@
 
 <div class="row"><div class="col-md-10 col-lg-8">
 <p class="<%= "text-danger" if @task.delayed? %>">
-  <b>Due at <%= format_due_at @task.due_at %></b><br>
+  <strong>Due at <%= format_due_at @task.due_at %></strong><br>
   <span><%= jquery_time_ago @task.due_at %></span>
 </p>
 
 <p>
-  <b>Repeat every</b><br>
+  <strong>Repeat every</strong><br>
   <%= @task.repeat_every.presence || "Only once" %>
 </p>
 
 <p>
-  <b>Reminder</b><br>
+  <strong>Reminder</strong><br>
   <%= reminder_options.key(@task.reminder) || "Never" %>
 </p>
 
 <% if @task.url.present? %>
   <p>
-    <b>Url</b><br>
+    <strong>Url</strong><br>
     <%= link_to truncate(@task.url, length: 40), @task.url, target: "_blank" %>
   </p>
 <% end %>
 
 <% if @task.location.present? %>
   <p>
-    <b>Location</b><br>
+    <strong>Location</strong><br>
     <%= @task.location %><br>
     <%= link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location), target: "_blank" %>
   </p>
 <% end %>
 
 <% if @task.description.present? %>
-  <p class="collapse-bottom">
-    <b>Description</b>
-  </p>
-  <%= simple_format @task.description %>
+  <%= markdown ["**Description**", @task.description].join("  \n") %>
 <% end %>
 
 <%= form_tag task_shares_path(@task) do |f| %>
-  <b>Share this task</b><br/>
+  <strong>Share this task</strong><br/>
   <div class="form-group">
     <div class="input-group">
       <span class="input-group-addon">

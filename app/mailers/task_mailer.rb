@@ -1,5 +1,5 @@
 class TaskMailer < ActionMailer::Base
-  helper :tasks
+  helper :tasks, :markdown
 
   def reminder(task)
     @task = task
