@@ -19,12 +19,14 @@
       <%= link_to count_and_text(current_user.tasks.todo.count, "All categories"), tasks_path(category_id: nil, show: "todo") %>
     </li>
     <li class="divider"></li>
-    <% current_user.categories.each do |category| %>
-      <li class="<%= "active" if @show == "todo" && category == @category %>">
-        <%= link_to count_and_text(category.tasks.todo.count, category.name), tasks_path(category_id: category.id, show: "todo") %>
-      </li>
+    <% if current_user.categories.any? %>
+      <% current_user.categories.each do |category| %>
+        <li class="<%= "active" if @show == "todo" && category == @category %>">
+          <%= link_to count_and_text(category.tasks.todo.count, category.name), tasks_path(category_id: category.id, show: "todo") %>
+        </li>
+      <% end %>
+      <li class="divider"></li>
     <% end %>
-    <li class="divider"></li>
     <li>
       <%= link_to categories_path, class: "text-muted" do %>
         <span class="glyphicon glyphicon-cog"></span>
