@@ -17,7 +17,7 @@
           <small class="text-muted">(The only required field!)</small>
         <% end %>
         <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+          <div class="input-group-addon"><%= icon("pencil") %></div>
           <%= f.text_field :name, class: "form-control" %>
         </div>
         <% if @task.errors[:name].any? %>
@@ -27,7 +27,7 @@
       <div class="form-group <%= "has-error" if @task.errors[:humanized_due_at].any? %>">
         <%= f.label :humanized_due_at, "Due at", class: "control-label" %>
         <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-time"></span></div>
+          <div class="input-group-addon"><%= icon("time") %></div>
           <%= f.text_field :humanized_due_at, class: "form-control" %>
         </div>
         <% if @task.errors[:humanized_due_at].any? %>
@@ -37,14 +37,14 @@
       <div class="form-group">
         <%= f.label :repeat_every, class: "control-label" %>
         <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-repeat"></span></div>
+          <div class="input-group-addon"><%= icon("repeat") %></div>
           <%= f.select :repeat_every, repeat_every_options, { include_blank: "Only once" }, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :reminder, class: "control-label" %>
         <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-bell"></span></div>
+          <div class="input-group-addon"><%= icon("bell") %></div>
           <%= f.select :reminder, reminder_options, { include_blank: "Never" }, class: "form-control" %>
         </div>
       </div>
@@ -55,10 +55,7 @@
         <%= render "sub_task_fields", f: sub_task_form %>
       <% end %>
       <div class="form-group">
-        <%= link_to_add_association f, :sub_tasks, class: "btn btn-default btn-block" do %>
-          <span class="glyphicon glyphicon-plus"></span>
-          Add another
-        <% end %>
+        <%= link_to_add_association icon_and_text("plus", "Add another"), f, :sub_tasks, class: "btn btn-default btn-block" %>
       </div>
     </div>
 
@@ -66,21 +63,21 @@
       <div class="form-group">
         <%= f.label :category_id, class: "control-label" %>
         <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></div>
+          <div class="input-group-addon"><%= icon("tag") %></div>
           <%= f.collection_select :category_id, current_user.categories, :id, :name, { include_blank: true }, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :url, class: "control-label" %>
         <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></div>
+          <div class="input-group-addon"><%= icon("globe") %></div>
           <%= f.text_field :url, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :location, class: "control-label" %>
         <div class="input-group">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
+          <div class="input-group-addon"><%= icon("map-marker") %></div>
           <%= f.text_field :location, class: "form-control" %>
         </div>
       </div>
@@ -94,12 +91,12 @@
 
   <div class="form-group">
     <%= f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@task.new_record? ? "Creating" : "Updating"} Task..." } do %>
-      <span class="glyphicon glyphicon-ok"></span>
+      <%= icon("ok") %>
       <%= @task.new_record? ? "Create" : "Update" %>
       Task
     <% end %>
     <%= link_to @task.persisted? ? @task : tasks_path, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-remove"></span>
+      <%= icon("remove") %>
       Cancel
     <% end %>
   </div>

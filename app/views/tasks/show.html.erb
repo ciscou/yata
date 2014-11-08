@@ -53,8 +53,7 @@
   <strong>Share this task</strong><br/>
   <div class="form-group">
     <div class="input-group">
-      <span class="input-group-addon">
-        <span class="glyphicon glyphicon-share-alt"></span>
+      <span class="input-group-addon"><%= icon("share-alt") %></span>
       </span>
       <%= email_field_tag :email, nil, required: true, placeholder: "someone@example.com", class: "form-control" %>
       <span class="input-group-btn">
@@ -66,6 +65,6 @@
 
 <p></p>
 <%= link_to icon_and_text("chevron-left", "Back"), tasks_path, class: 'btn btn-default'  %>
-<%= link_to icon_and_text("edit", "Edit"), edit_task_path(@task), class: 'btn btn-default' %>
+<%= link_to icon_and_text("pencil", "Edit"), edit_task_path(@task), class: 'btn btn-default' %>
 <%= link_to_destroy_task(@task, true) %>
 </div></div>

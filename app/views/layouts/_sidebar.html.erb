@@ -28,10 +28,7 @@
       <li class="divider"></li>
     <% end %>
     <li>
-      <%= link_to categories_path, class: "text-muted" do %>
-        <span class="glyphicon glyphicon-cog"></span>
-        Manage categories
-      <% end %>
+      <%= link_to icon_and_text("cog", "Manage categories"), categories_path, class: "text-muted" %>
     </li>
   </ul>
 <% end %>

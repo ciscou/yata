@@ -3,7 +3,7 @@
     <%= text_field_tag :name, sub_task.name, class: "form-control", disabled: true %>
     <div class="input-group-btn">
       <%= link_to [sub_task.task, sub_task], method: :patch, remote: true, data: { disable_with: "..." }, class: "btn btn-#{sub_task.done? ? "success" : "danger"}" do %>
-        <span class="glyphicon glyphicon-<%= sub_task.done? ? "ok" : "remove" %>"></span>
+        <%= icon(sub_task.done? ? "ok" : "remove") %>
       <% end %>
     </div>
   </div>

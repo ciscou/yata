@@ -9,10 +9,7 @@
       <%= link_to root_path, :class => "navbar-brand" do %>
         <%= image_tag "logo.png" %>
       <% end %>
-      <%= link_to new_task_path, class: "btn btn-success navbar-btn navbar-right" do %>
-        <span class="glyphicon glyphicon-plus"></span>
-        New task
-      <% end %>
+      <%= link_to icon_and_text("plus", "New task"), new_task_path, class: "btn btn-success navbar-btn navbar-right" %>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
