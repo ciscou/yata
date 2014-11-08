@@ -3,7 +3,7 @@
 <div class="row"><div class="col-md-10 col-lg-8">
 <p class="<%= "text-danger" if @task.delayed? %>">
   <strong>Due at <%= format_due_at @task.due_at %></strong><br>
-  <span><%= jquery_time_ago @task.due_at %></span>
+  <span><%= jquery_time_ago(@task.due_at) || "Unscheduled" %></span>
 </p>
 
 <p>

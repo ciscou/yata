@@ -47,10 +47,14 @@ module TasksHelper
   end
 
   def jquery_time_ago(datetime)
+    return if datetime.nil?
+
     content_tag :abbr, format_due_at(datetime), class: "timeago", title: datetime.iso8601
   end
 
   def format_due_at(datetime)
+    return if datetime.nil?
+
     datetime.strftime "%A, %B %d, %Y %H:%M"
   end
 

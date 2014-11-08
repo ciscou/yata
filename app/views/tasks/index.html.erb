@@ -1,8 +1,8 @@
 <h1>Tasks</h1>
 
 <% if @tasks.any? %>
-  <% @tasks.group_by { |task| task.due_at.to_date }.each do |date, tasks| %>
-    <strong><%= date.strftime("%A, %B %e, %Y") %></strong>
+  <% @tasks.group_by { |task| task.due_at.to_date.strftime("%A, %B %e, %Y") }.each do |date, tasks| %>
+    <strong><%= date %></strong>
     <table class="table table-striped">
       <tbody>
         <%= render tasks %>

@@ -1,25 +1,29 @@
 class Task < ActiveRecord::Base
   SCOPES = {
-    delayed:  "Delayed",
-    today:    "Today",
-    tomorrow: "Tomorrow",
-    later:    "Later",
-    todo:     "See all",
-    done:     "Done"
-  }.with_indifferent_access
+    delayed:     "Delayed",
+    today:       "Today",
+    tomorrow:    "Tomorrow",
+    later:       "Later",
+    unscheduled: "Unscheduled",
+    todo:        "See all",
+    done:        "Done"
+  }.with_indifferent_access.freeze
 
   default_scope -> { order(:due_at) }
+
+  scope :scheduled,   -> { where.not(due_at: nil) }
+  scope :unscheduled, -> { where(due_at: nil) }
 
   scope :todo, -> { where(done: false) }
   scope :done, -> { where(done: true) }
 
-  scope :delayed , -> { todo.where("due_at < ?", Time.current) }
-  scope :today   , -> { todo.where("due_at > ? and due_at < ?", Time.current, Time.current.end_of_day) }
-  scope :tomorrow, -> { todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
-  scope :later   , -> { todo.where("due_at > ?", Time.current.tomorrow.end_of_day) }
+  scope :delayed,  -> { scheduled.todo.where("due_at < ?", Time.current) }
+  scope :today,    -> { scheduled.todo.where("due_at > ? and due_at < ?", Time.current, Time.current.end_of_day) }
+  scope :tomorrow, -> { scheduled.todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
+  scope :later,    -> { scheduled.todo.where("due_at > ?", Time.current.tomorrow.end_of_day) }
 
   scope :pending_to_send_reminder, -> {
-    todo.where(reminder_sent: false).
+    scheduled.todo.where(reminder_sent: false).
     where("reminder is not null").
     where("due_at - reminder * interval '1 minute' < ?", Time.current)
   }
@@ -33,7 +37,7 @@ class Task < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :name, :due_at, presence: true
+  validates :name, presence: true
   validate  :chronic_parsed_humanized_due_at
 
   def self.send_reminders
@@ -43,6 +47,10 @@ class Task < ActiveRecord::Base
   def send_reminder
     TaskMailer.reminder(self).deliver
     update_attribute(:reminder_sent, true)
+  end
+
+  def due_at
+    read_attribute(:due_at) || NullDueAt.new
   end
 
   def mark_as_done!
@@ -77,7 +85,22 @@ class Task < ActiveRecord::Base
 
   def humanized_due_at=(s)
     @humanized_due_at_before_type_cast = s
-    self.due_at = Chronic.parse(s)
+
+    if s.present?
+      self.due_at = Chronic.parse(s)
+      @humanized_due_at_error = due_at.nil?
+    else
+      self.due_at = nil
+      @humanized_due_at_error = false
+    end
+  end
+
+  def scheduled?
+    !!due_at?
+  end
+
+  def unscheduled?
+    !scheduled?
   end
 
   def todo?
@@ -107,7 +130,7 @@ class Task < ActiveRecord::Base
   end
 
   def chronic_parsed_humanized_due_at
-    errors.add(:humanized_due_at, "is not a valid date") unless due_at
+    errors.add(:humanized_due_at, "is not a valid date") if @humanized_due_at_error
   end
 
   def reset_reminder_sent

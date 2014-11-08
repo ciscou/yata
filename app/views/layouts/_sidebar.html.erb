@@ -3,7 +3,7 @@
 
   <ul class="nav nav-pills nav-stacked">
     <% Task::SCOPES.each do |show, text| %>
-      <% if show == "todo" %>
+      <% if %w[todo done].include? show %>
         <li class="divider"></li>
       <% end %>
       <li class="<%= show %> <%= "active" if @show == show %>">
