@@ -1,0 +1,32 @@
+<%= form_for @category do |f| %>
+<div class="row"><div class="col-md-10 col-lg-8">
+  <div class="form-group <%= "has-error" if @category.errors[:name].any? %>">
+    <%= f.label :name, class: "control-label" %>
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <% if @category.errors[:name].any? %>
+      <p class="help-block"><%= @category.errors[:name].to_sentence %></p>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@category.new_record? ? "Creating" : "Updating"} Category..." } do %>
+      <span class="glyphicon glyphicon-ok"></span>
+      <%= @category.new_record? ? "Create" : "Update" %>
+      Category
+    <% end %>
+
+    <%= link_to @category, class: 'btn btn-danger', method: :delete, data: { confirm: "Are you sure?" } do %>
+      <span class="glyphicon glyphicon-trash"></span>
+      Delete
+    <% end %>
+  </div>
+</div></div>
+<% end %>
+
+<%= link_to categories_path, class: 'btn btn-default' do %>
+  <span class="glyphicon glyphicon-chevron-left"></span>
+  Back
+<% end %>

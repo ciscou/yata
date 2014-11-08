@@ -1,0 +1,12 @@
+<h1>Categories</h1>
+
+<div class="list-group">
+  <% @categories.each do |category| %>
+    <%= link_to category.name, edit_category_path(category), class: "list-group-item" %>
+  <% end %>
+</div>
+
+<%= link_to new_category_path, class: "btn btn-success" do %>
+  <span class="glyphicon glyphicon-plus"></span>
+  New category
+<% end %>

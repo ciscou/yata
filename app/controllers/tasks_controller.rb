@@ -1,8 +1,10 @@
 class TasksController < ApplicationController
   before_filter :pick_show_parameter, only: :index
+  before_filter :load_category, only: :index
 
   def index
     @tasks = current_user.tasks.send(@show)
+    @tasks = @tasks.where(category_id: @category.id) if @category
   end
 
   def show
@@ -79,6 +81,12 @@ class TasksController < ApplicationController
     @show  = params[:show] || session[:show]
     @show  = "todo" unless @show.in? Task::SCOPES
     session[:show] = @show
+  end
+
+  def load_category
+    if params[:category_id].present?
+      @category = current_user.categories.find(params[:category_id])
+    end
   end
 
   def task_attributes

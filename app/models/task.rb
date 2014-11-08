@@ -36,6 +36,7 @@ class Task < ActiveRecord::Base
   before_save :ensure_url_has_http_protocol, if: :url?
 
   belongs_to :user
+  belongs_to :category
 
   validates :name, presence: true
   validate  :chronic_parsed_humanized_due_at

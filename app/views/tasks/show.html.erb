@@ -23,6 +23,13 @@
   </p>
 <% end %>
 
+<% if @task.category.present? %>
+  <p>
+    <strong>Category</strong><br>
+    <%= @task.category.name %>
+  </p>
+<% end %>
+
 <% if @task.url.present? %>
   <p>
     <strong>Url</strong><br>

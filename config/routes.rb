@@ -11,6 +11,8 @@ Yata::Application.routes.draw do
     patch :unmark_as_done, on: :member
   end
 
+  resources :categories, except: :show
+
   resources :shares, only: [] do
     resource :accept, only: :show
   end
