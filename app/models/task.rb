@@ -11,19 +11,19 @@ class Task < ActiveRecord::Base
 
   default_scope -> { order(:due_at) }
 
-  scope :scheduled,   -> { where.not(due_at: nil) }
-  scope :unscheduled, -> { where(due_at: nil) }
-
   scope :todo, -> { where(done: false) }
   scope :done, -> { where(done: true) }
 
-  scope :delayed,  -> { scheduled.todo.where("due_at < ?", Time.current) }
-  scope :today,    -> { scheduled.todo.where("due_at > ? and due_at < ?", Time.current, Time.current.end_of_day) }
-  scope :tomorrow, -> { scheduled.todo.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
-  scope :later,    -> { scheduled.todo.where("due_at > ?", Time.current.tomorrow.end_of_day) }
+  scope :scheduled,   -> { todo.where.not(due_at: nil) }
+  scope :unscheduled, -> { todo.where(due_at: nil) }
+
+  scope :delayed,  -> { scheduled.where("due_at < ?", Time.current) }
+  scope :today,    -> { scheduled.where("due_at > ? and due_at < ?", Time.current, Time.current.end_of_day) }
+  scope :tomorrow, -> { scheduled.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
+  scope :later,    -> { scheduled.where("due_at > ?", Time.current.tomorrow.end_of_day) }
 
   scope :pending_to_send_reminder, -> {
-    scheduled.todo.where(reminder_sent: false).
+    scheduled.where(reminder_sent: false).
     where("reminder is not null").
     where("due_at - reminder * interval '1 minute' < ?", Time.current)
   }
