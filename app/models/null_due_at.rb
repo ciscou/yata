@@ -15,6 +15,14 @@ class NullDueAt
     "Unscheduled"
   end
 
+  def +(duration)
+    self
+  end
+
+  def -(duration)
+    self
+  end
+
   def to_s(format = nil)
     case format
     when :time
