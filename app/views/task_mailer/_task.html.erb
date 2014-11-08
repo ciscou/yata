@@ -4,6 +4,14 @@
   This task should be done at <%= format_due_at task.due_at %> (<%= time_ago_or_since_in_words task.due_at %>)
 </p>
 
+<% if task.sub_tasks.any? %>
+  <ul>
+    <% task.sub_tasks.each do |sub_task| %>
+      <li><%= sub_task %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <% if task.url.present? %>
   <p>
     <%= link_to task.url, task.url %>

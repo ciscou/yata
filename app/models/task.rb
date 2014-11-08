@@ -93,7 +93,10 @@ class Task < ActiveRecord::Base
   end
 
   def build_accept_for(user)
-    user.tasks.new attributes.slice("name", "due_at", "repeat_every", "reminder", "url", "location", "description")
+    user.tasks.new do |task|
+      task.attributes = attributes.slice("name", "due_at", "repeat_every", "reminder", "url", "location", "description")
+      task.sub_tasks_attributes = sub_tasks.map { |st| st.attributes.slice("name") }
+    end
   end
 
   private
