@@ -1,11 +1,5 @@
-<div class="row">
-  <div class="col-xs-6">
-    <h1><%= pluralize @tasks.count, "Task" %></h1>
-  </div>
-  <div class="col-xs-6">
-    <%= link_to icon_and_text("plus", "Add"), new_task_path, class: 'btn btn-success pull-right', style: "margin-top: 1.7em" %>
-  </div>
-</div>
+<%= link_to icon_and_text("plus", "Add"), new_task_path, class: 'btn btn-success', style: "display: block; position: absolute; right: 1em" %>
+<h1><%= pluralize @tasks.count, "Task" %></h1>
 
 <% if @tasks.any? %>
   <% @tasks.group_by { |task| task.due_at.to_date.strftime("%A, %B %e, %Y") }.each do |date, tasks| %>
