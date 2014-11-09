@@ -10,8 +10,9 @@
         %p
           = format_due_at @task.due_at
           %br
-          = surround '(', ')' do
-            = jquery_time_ago(@task.due_at) || "Unscheduled"
+          %em
+            = surround '(', ')' do
+              = jquery_time_ago(@task.due_at) || "Unscheduled"
 
       %dt= icon_and_text 'repeat', "Repeat every"
       %dd
@@ -23,7 +24,10 @@
 
       - if @task.sub_tasks.any?
         %dt= icon_and_text 'list', "Sub tasks"
-        %dd= render @task.sub_tasks
+        %dd
+          %table.table.table-condensed
+            %tbody
+              = render @task.sub_tasks
 
       - if @task.category.present?
         %dt= icon_and_text 'tag', "Category"

@@ -1,10 +1,8 @@
-<%= div_for sub_task, class: "form-group" do %>
-  <div class="input-group">
-    <%= text_field_tag :name, sub_task.name, class: "form-control", disabled: true %>
-    <div class="input-group-btn">
-      <%= link_to [sub_task.task, sub_task], method: :patch, remote: true, data: { disable_with: "..." }, class: "btn btn-#{sub_task.done? ? "success" : "danger"}" do %>
-        <%= icon(sub_task.done? ? "ok" : "remove") %>
-      <% end %>
-    </div>
-  </div>
+<%= content_tag_for :tr, sub_task do %>
+  <td>
+    <%= link_to [sub_task.task, sub_task], method: :patch, remote: true, data: { disable_with: "..." }, class: "btn btn-xs btn-#{sub_task.done? ? "success" : "danger"}" do %>
+      <%= icon(sub_task.done? ? "ok" : "remove") %>
+    <% end %>
+    <%= sub_task.name %>
+  </td>
 <% end %>
