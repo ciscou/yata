@@ -81,10 +81,10 @@
               .modal-content
                 .modal-body
                   %h3 Are you sure?
-                  = link_to @task, method: :delete, class: 'btn btn-danger btn-block' do
+                  = link_to @task, method: :delete, class: 'btn btn-danger btn-lg btn-block' do
                     = icon('trash')
                     Yes, delete
-                  = link_to "#", data: { dismiss: 'modal' }, class: 'btn btn-default btn-block' do
+                  = link_to "#", data: { dismiss: 'modal' }, class: 'btn btn-default btn-lg btn-block' do
                     = icon('remove')
                     No, cancel
           = link_to icon_and_text('trash', "Delete"), "#", data: { toggle: 'modal', target: '#delete-confirm-modal' }, class: 'btn btn-danger'
