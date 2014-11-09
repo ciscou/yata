@@ -1,0 +1,12 @@
+%h1 Categories
+
+.row
+  .col-md-10.col-lg-8
+    %table.table.table-condensed
+      %thead
+        %tr
+          %th Name
+      %tbody
+        = render(@categories) || render('no_categories')
+
+= link_to icon_and_text("plus", "New Category"), new_category_path, class: "btn btn-success"
