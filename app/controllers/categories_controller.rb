@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.find(params[:id])
     @category.destroy
 
-    redirect_to categories_url
+    redirect_to categories_url, notice: "Category was successfully deleted"
   end
 
   private

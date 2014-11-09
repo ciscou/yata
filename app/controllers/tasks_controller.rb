@@ -48,7 +48,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
     @task.destroy
 
-    redirect_to tasks_url
+    redirect_to tasks_url, notice: "Task was successfully deleted"
   end
 
   def mark_as_done
