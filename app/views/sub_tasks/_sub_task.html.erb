@@ -1,8 +1,14 @@
 <%= content_tag_for :tr, sub_task do %>
   <td>
-    <%= link_to [sub_task.task, sub_task], method: :patch, remote: true, data: { disable_with: "..." }, class: "btn btn-xs btn-#{sub_task.done? ? "success" : "danger"}" do %>
-      <%= icon(sub_task.done? ? "ok" : "remove") %>
+    <%= link_to [sub_task.task, sub_task], method: :patch, remote: true, data: { disable_with: "..." }, class: "btn btn-xs btn-#{sub_task.done? ? "default" : "success"}" do %>
+      <%= icon(sub_task.done? ? "remove" : "ok") %>
+    <% end %>
+    <% if sub_task.done? %>
+      <s>
     <% end %>
     <%= sub_task.name %>
+    <% if sub_task.done? %>
+      </s>
+    <% end %>
   </td>
 <% end %>
