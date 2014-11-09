@@ -37,6 +37,7 @@ gem 'jquery-rails'
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem "rack-timeout"
 
 # Deploy with Capistrano
 # gem 'capistrano'
