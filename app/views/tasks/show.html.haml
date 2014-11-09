@@ -8,11 +8,14 @@
         Due at
       %dd{class: ("text-danger" if @task.delayed?)}
         %p
-          = format_due_at @task.due_at
-          %br
-          %em
-            = surround '(', ')' do
-              = jquery_time_ago(@task.due_at) || "Unscheduled"
+          - if @task.scheduled?
+            = format_due_at @task.due_at
+            %br
+            %em
+              = surround '(', ')' do
+                = jquery_time_ago(@task.due_at)
+          - else
+            Unscheduled
 
       %dt= icon_and_text 'repeat', "Repeat every"
       %dd
