@@ -15,11 +15,7 @@
   <h2>By category</h2>
 
   <ul class="nav nav-pills nav-stacked">
-    <li class="<%= "active" if @show == "todo" && @category.nil? %>">
-      <%= link_to count_and_text(current_user.tasks.todo.count, "All categories"), tasks_path(category_id: nil, show: "todo") %>
-    </li>
-    <li class="divider"></li>
-    <% if current_user.categories.any? %>
+    <% if current_user.categories(true).any? %>
       <% current_user.categories.each do |category| %>
         <li class="<%= "active" if @show == "todo" && category == @category %>">
           <%= link_to count_and_text(category.tasks.todo.count, category.name), tasks_path(category_id: category.id, show: "todo") %>
@@ -27,6 +23,10 @@
       <% end %>
       <li class="divider"></li>
     <% end %>
+    <li class="<%= "active" if @show == "todo" && @category.nil? %>">
+      <%= link_to count_and_text(current_user.tasks.todo.count, "All categories"), tasks_path(category_id: nil, show: "todo") %>
+    </li>
+    <li class="divider"></li>
     <li>
       <%= link_to icon_and_text("cog", "Manage categories"), categories_path, class: "text-muted" %>
     </li>
