@@ -3,7 +3,7 @@ Yata::Application.routes.draw do
 
   resources :reminders, only: :index
 
-  resources :tasks, except: :destroy do
+  resources :tasks do
     resources :sub_tasks, only: :update
     resources :shares, only: :create
     delete :clear, on: :collection

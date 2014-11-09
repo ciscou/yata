@@ -44,6 +44,13 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = current_user.tasks.find(params[:id])
+    @task.destroy
+
+    redirect_to tasks_url
+  end
+
   def mark_as_done
     @task = current_user.tasks.find(params[:id])
     @task.mark_as_done!

@@ -74,6 +74,12 @@
           = icon('ok')
           = @task.new_record? ? "Create" : "Update"
           Task
-        = link_to @task.persisted? ? @task : tasks_path, class: 'btn btn-default' do
-          = icon('remove')
-          Cancel
+
+        - if @task.persisted?
+          = link_to @task, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' do
+            = icon('trash')
+            Delete
+
+      = link_to @task.persisted? ? @task : tasks_path, class: 'btn btn-default' do
+        = icon('remove')
+        Back
