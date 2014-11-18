@@ -33,3 +33,7 @@ abbr.timeago {
   cursor: pointer;
   border-bottom: none;
 }
+
+.list-group-item > span.label {
+  float: right;
+}

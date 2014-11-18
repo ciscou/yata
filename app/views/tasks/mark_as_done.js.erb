@@ -5,9 +5,9 @@ $("#task_<%= @task.id %>").replaceWith($("<%= j render @task %>"));
   $('#counter-by-due-at_<%= show %>').text("<%= count %>");
   <% if show == 'delayed' %>
       <% if count > 0 %>
-      $('#counter-by-due-at_<%= show %>').closest('.list-group-item').addClass('list-group-item-danger');
+      $('#counter-by-due-at_<%= show %>').addClass('label-danger').removeClass('label-info').closest('.list-group-item').addClass('list-group-item-danger');
     <% else %>
-      $('#counter-by-due-at_<%= show %>').closest('.list-group-item').removeClass('list-group-item-danger');
+      $('#counter-by-due-at_<%= show %>').addClass('label-info').removeClass('label-danger').closest('.list-group-item').removeClass('list-group-item-danger');
     <% end %>
   <% end %>
 <% end %>
