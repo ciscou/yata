@@ -4,7 +4,11 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks.send(@show)
-    @tasks = @tasks.where(category_id: @category.id) if @category
+    if @category
+      @tasks = @tasks.where(category_id: @category.id)
+    elsif params[:category_id] == ''
+      @tasks = @tasks.where(category_id: nil)
+    end
   end
 
   def show

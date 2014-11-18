@@ -1,0 +1,26 @@
+- if user_signed_in?
+  %h2 Filter
+
+  .panel.panel-default
+    .panel-heading By due at
+    .list-group
+      - Task::SCOPES.each do |show, text|
+        - count = current_user.tasks.send(show).count
+        = link_to tasks_path(show: show), class: "list-group-item #{'list-group-item-danger' if show == 'delayed' && count > 0} #{'active' if params[:category_id].nil? && @show == show}" do
+          = text
+          %span#counter-by-due-at.badge{id: show}= count
+
+  .panel.panel-default
+    .panel-heading By category
+    .list-group
+      - current_user.categories(true).each do |category|
+        = link_to tasks_path(category_id: category.id, show: 'todo'), class: "list-group-item #{'active' if @category == category && @show == 'todo'}" do
+          = category.name
+          %span#counter-by-category.badge{id: category.id}= current_user.tasks.where(category_id: category.id).todo.count
+      = link_to tasks_path(category_id: "", show: 'todo'), class: "list-group-item #{'active' if params[:category_id] == '' && @show == 'todo'}" do
+        = "Uncategorized"
+        %span#counter-by-category.badge{id: 'uncategorized'}= current_user.tasks.where(category_id: nil).todo.count
+      = link_to tasks_path(category_id: nil, show: 'todo'), class: "list-group-item #{'active' if params[:category_id].nil? && @show == 'todo'}" do
+        = "All categories"
+        %span#counter-by-category.badge{id: 'all'}= current_user.tasks.todo.count
+      = link_to icon_and_text('cog', "Manage categories"), categories_path, class: "list-group-item #{'active' if controller_name == 'categories'}"

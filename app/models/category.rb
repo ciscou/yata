@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  default_scope -> { order(:name) }
+  default_scope -> { order(:id) }
 
   belongs_to :user
   has_many :tasks, dependent: :nullify

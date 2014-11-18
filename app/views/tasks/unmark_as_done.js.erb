@@ -1,5 +1,0 @@
-$("#task_<%= @task.id %>").replaceWith($("<%= j render @task %>"));
-
-<% Task::SCOPES.each do |show, text| %>
-  $(".nav.nav-pills.nav-stacked .<%= show %>").html("<%= j render "layouts/link_pill", :show => show, :text => text %>");
-<% end %>
