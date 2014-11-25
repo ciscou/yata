@@ -64,4 +64,14 @@ module TasksHelper
       task.delayed? ? "delayed" : "on-time"
     ].join(" ")
   end
+
+  def tasks_index_subtitle(show, category_id, category)
+    if category.present?
+      category.name
+    elsif category_id == ''
+      'Uncategorized'
+    else
+      Task::SCOPES[show]
+    end
+  end
 end

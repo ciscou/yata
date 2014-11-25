@@ -1,4 +1,7 @@
-<h1><%= pluralize @tasks.count, "Task" %></h1>
+<h1>
+  <%= pluralize @tasks.count, "Task" %>
+  <small><%= tasks_index_subtitle(@show, @category_id, @category) %></small>
+</h1>
 
 <% if @tasks.any? %>
   <% @tasks.group_by { |task| task.due_at.to_date.strftime("%A, %B %e, %Y") }.each do |date, tasks| %>

@@ -95,8 +95,12 @@ class TasksController < ApplicationController
   end
 
   def load_category
-    if params[:category_id].present?
-      @category = current_user.categories.find(params[:category_id])
+    @category_id = params[:category_id] || session[:category_id]
+    @category_id = nil if @category_id == 'all'
+    session[:category_id] = @category_id
+
+    if @category_id.present?
+      @category = current_user.categories.find(@category_id)
     end
   end
 
