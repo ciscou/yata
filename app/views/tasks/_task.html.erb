@@ -1,6 +1,9 @@
 <%= content_tag_for :tr, task, :class => task_class(task) do %>
   <td class="name">
     <%= link_to truncate(task.name, :length => 60), task %>
+    <% if task.sub_tasks.any? %>
+      (<%= task.sub_tasks.where(done: true).count %>/<%= task.sub_tasks.count %>)
+    <% end %>
   </td>
   <td class="due_at_and_actions">
     <span class="due_at"><%= task.due_at.to_s(:time) %></span>
