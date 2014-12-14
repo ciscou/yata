@@ -69,9 +69,9 @@ module TasksHelper
     if category.present?
       category.name
     elsif category_id == ''
-      'Uncategorized'
+      "Uncategorized"
     else
-      Task::SCOPES[show]
+      Task::SCOPES[show] unless show == 'todo'
     end
   end
 end
