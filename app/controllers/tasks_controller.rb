@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_filter :pick_show_parameter, only: :index
-  before_filter :load_category, only: :index
+  before_filter :load_category, only: [:index, :new]
 
   def index
     @tasks = current_user.tasks.send(@show)
@@ -18,6 +18,7 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.new
+    @task.category = @category
     @task.sub_tasks.build
   end
 
