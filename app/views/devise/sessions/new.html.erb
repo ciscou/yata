@@ -19,11 +19,15 @@
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="checkbox">
-      <%= f.label :remember_me do %>
-        <%= f.check_box :remember_me %>
-        Remember me
-      <% end %>
+    <div class="form-group">
+      <div class="btn-group" data-toggle="buttons">
+        <%= f.label :remember_me, class: 'btn btn-default' do %>
+          <%= f.check_box :remember_me %>
+          <span class="glyphicon glyphicon-check"></span>
+          <span class="glyphicon glyphicon-unchecked"></span>
+          Remember me
+        <% end %>
+      </div>
     </div>
   <% end -%>
 
