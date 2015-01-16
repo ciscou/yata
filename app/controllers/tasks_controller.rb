@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     @tasks = current_user.tasks.send(@show)
     if @category
       @tasks = @tasks.where(category_id: @category.id)
-    elsif params[:category_id] == ''
+    elsif @category_id == 'uncategorized'
       @tasks = @tasks.where(category_id: nil)
     end
   end
@@ -96,11 +96,10 @@ class TasksController < ApplicationController
   end
 
   def load_category
-    @category_id = params[:category_id] || session[:category_id]
-    @category_id = nil if @category_id == 'all'
+    @category_id = params[:category_id].presence || session[:category_id].presence || 'all'
     session[:category_id] = @category_id
 
-    if @category_id.present?
+    if %w[all uncategorized].exclude?(@category_id)
       @category = current_user.categories.find(@category_id)
     end
   end

@@ -68,7 +68,7 @@ module TasksHelper
   def tasks_index_subtitle(show, category_id, category)
     if category.present?
       category.name
-    elsif category_id == ''
+    elsif category_id == 'uncategorized'
       "Uncategorized"
     else
       Task::SCOPES[show] unless show == 'todo'
