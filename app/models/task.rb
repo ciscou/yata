@@ -12,7 +12,7 @@ class Task < ActiveRecord::Base
   default_scope -> { order(:due_at) }
 
   scope :todo, -> { where(done: false) }
-  scope :done, -> { where(done: true) }
+  scope :done, -> { reorder(due_at: :desc).where(done: true) }
 
   scope :scheduled,   -> { todo.where.not(due_at: nil) }
   scope :unscheduled, -> { todo.where(due_at: nil) }
