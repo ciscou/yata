@@ -24,3 +24,9 @@
         = "All categories"
         %span#counter-by-category.label.label-info{id: 'all'}= current_user.tasks.todo.count
       = link_to icon_and_text('cog', "Manage categories"), categories_path, class: "list-group-item #{'active' if controller_name == 'categories'}"
+
+  %h2 User
+
+  .list-group
+    = link_to icon_and_text('user', "My Profile"), edit_user_registration_path, class: 'list-group-item'
+    = link_to icon_and_text('log-out', "Logout"), destroy_user_session_path, method: :delete, class: 'list-group-item'
