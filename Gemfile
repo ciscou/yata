@@ -9,6 +9,7 @@ gem 'rails', '4.0.11'
 
 gem 'pg'
 gem 'bootstrap-sass', '~> 3.3.0'
+gem 'font-awesome-rails'
 gem 'autoprefixer-rails'
 gem 'chronic'
 gem 'devise'

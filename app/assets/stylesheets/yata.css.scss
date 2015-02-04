@@ -37,25 +37,3 @@ abbr.timeago {
 .list-group-item > span.label {
   float: right;
 }
-
-.btn-group[data-toggle=buttons] {
-  label.btn {
-    span.glyphicon.glyphicon-check {
-      display: none;
-    }
-
-    span.glyphicon.glyphicon-unchecked {
-      display: inline-block;
-    }
-  }
-
-  label.btn.active {
-    span.glyphicon.glyphicon-check {
-      display: inline-block;
-    }
-
-    span.glyphicon.glyphicon-unchecked {
-      display: none;
-    }
-  }
-}
