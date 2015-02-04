@@ -4,7 +4,7 @@
   .col-md-10.col-lg-8
     %dl.dl-horizontal
       %dt{class: ("text-danger" if @task.delayed?)}
-        = icon("time")
+        = icon("clock-o")
         Due at
       %dd{class: ("text-danger" if @task.delayed?)}
         %p
@@ -17,13 +17,13 @@
           - else
             Unscheduled
 
-      %dt= icon_and_text 'repeat', "Repeat every"
-      %dd
-        %p= @task.repeat_every.presence || "Only once"
-
       %dt= icon_and_text 'bell', "Reminder"
       %dd
         %p= reminder_options.key(@task.reminder) || "Never"
+
+      %dt= icon_and_text 'repeat', "Repeat every"
+      %dd
+        %p= @task.repeat_every.presence || "Only once"
 
       - if @task.sub_tasks.any?
         %dt= icon_and_text 'list', "Sub tasks"
@@ -38,7 +38,7 @@
           %p= @task.category.name
 
       - if @task.url.present?
-        %dt= icon_and_text 'globe', "Url"
+        %dt= icon_and_text 'external-link', "Url"
         %dd
           %p= link_to truncate(@task.url, length: 40), @task.url, target: "_blank"
 

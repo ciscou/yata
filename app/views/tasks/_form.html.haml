@@ -22,22 +22,22 @@
           .form-group{class: ('has-error' if @task.errors[:humanized_due_at].any?)}
             = f.label :humanized_due_at, "Due at", class: 'control-label'
             .input-group
-              .input-group-addon= icon('time')
+              .input-group-addon= icon('clock-o')
               = f.text_field :humanized_due_at, class: 'form-control'
             - if @task.errors[:humanized_due_at].any?
               %p.help-block= @task.errors[:humanized_due_at].to_sentence
-
-          .form-group
-            = f.label :repeat_every, class: 'control-label'
-            .input-group
-              .input-group-addon= icon('repeat')
-              = f.select :repeat_every, repeat_every_options, { include_blank: "Only once" }, class: 'form-control'
 
           .form-group
             = f.label :reminder, class: 'control-label'
             .input-group
               .input-group-addon= icon('bell')
               = f.select :reminder, reminder_options, { include_blank: "Never" }, class: 'form-control'
+
+          .form-group
+            = f.label :repeat_every, class: 'control-label'
+            .input-group
+              .input-group-addon= icon('repeat')
+              = f.select :repeat_every, repeat_every_options, { include_blank: "Only once" }, class: 'form-control'
 
         #sub-tasks.tab-pane
           = f.fields_for :sub_tasks do |sub_task_form|
@@ -55,7 +55,7 @@
           .form-group
             = f.label :url, class: 'control-label'
             .input-group
-              .input-group-addon= icon('globe')
+              .input-group-addon= icon('external-link')
               = f.text_field :url, class: 'form-control'
 
           .form-group
