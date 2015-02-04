@@ -7,7 +7,7 @@
   <div class="form-group <%= "has-error" if resource.errors[:password].any? %>">
     <%= f.label :password, "New password", class: "control-label" %>
     <div class="input-group">
-      <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+      <div class="input-group-addon"><span class="fa fa-asterisk"></span></div>
       <%= f.password_field :password, class: "form-control", placeholder: "************", autocomplete: "off" %>
     </div>
     <% if resource.errors[:password].any? %>
@@ -18,7 +18,7 @@
   <div class="form-group <%= "has-error" if resource.errors[:password_confirmation].any? %>">
     <%= f.label :password_confirmation, "Confirm new password", class: "control-label" %>
     <div class="input-group">
-      <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+      <div class="input-group-addon"><span class="fa fa-asterisk"></span></div>
       <%= f.password_field :password_confirmation, class: "form-control", placeholder: "************", autocomplete: "off" %>
     </div>
     <% if resource.errors[:password_confirmation].any? %>

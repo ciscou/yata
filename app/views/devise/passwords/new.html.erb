@@ -5,7 +5,7 @@
   <div class="form-group <%= "has-error" if resource.errors[:email].any? %>">
     <%= f.label :email, class: "control-label" %><br />
     <div class="input-group">
-      <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+      <div class="input-group-addon"><span class="fa fa-envelope"></span></div>
       <%= f.email_field :email, class: "form-control", placeholder: "someone@example.com", autofocus: true %>
     </div>
     <% if resource.errors[:email].any? %>

@@ -2,7 +2,7 @@
   <%= f.label :name, class: "control-label" if f.index == 0 %>
   <div class="input-group">
     <div class="input-group-addon">
-      <%= icon(f.object.done? ? "ok" : "remove") %>
+      <%= icon(f.object.done? ? "check" : "remove") %>
     </div>
     <%= f.text_field :name, class: "form-control" %>
     <div class="input-group-btn">

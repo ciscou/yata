@@ -1,6 +1,6 @@
 module ApplicationHelper
   def icon(id)
-    content_tag(:span, "", class: "glyphicon glyphicon-#{id}")
+    content_tag(:span, "", class: "fa fa-#{id}")
   end
 
   def icon_and_text(id, text)

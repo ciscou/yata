@@ -11,7 +11,7 @@
 
       .form-group
         = f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@category.new_record? ? "Creating" : "Updating"} Category..." } do
-          = icon("ok")
+          = icon("check")
           = @category.new_record? ? "Create" : "Update"
           Category
 
