@@ -5,10 +5,10 @@
 %p
 
 = form_for @task do |f|
-  .row
-    .col-md-10.col-lg-8
-      .tab-content
-        #basic-info.tab-pane.active
+  .tab-content
+    #basic-info.tab-pane.active
+      .row
+        .col-md-10.col-lg-8
           .form-group{class: ('has-error' if @task.errors[:name].any?)}
             = f.label :name, class: 'control-label' do
               Name
@@ -39,13 +39,17 @@
               .input-group-addon= icon('repeat')
               = f.select :repeat_every, repeat_every_options, { include_blank: "Only once" }, class: 'form-control'
 
-        #sub-tasks.tab-pane
+    #sub-tasks.tab-pane
+      .row
+        .col-md-10.col-lg-8
           = f.fields_for :sub_tasks do |sub_task_form|
             = render 'sub_task_fields', f: sub_task_form
           .form-group
             = link_to_add_association icon_and_text('plus', "Add another"), f, :sub_tasks, class: 'btn btn-default btn-block'
 
-        #more-stuff.tab-pane
+    #more-stuff.tab-pane
+      .row
+        .col-md-10.col-lg-8
           .form-group
             = f.label :category_id, class: 'control-label'
             .input-group
@@ -64,10 +68,10 @@
               .input-group-addon= icon('map-marker')
               = f.text_field :location, class: 'form-control'
 
-          .form-group
-            = f.label :description, class: 'control-label'
-            = f.text_area :description, class: 'form-control', rows: 5
-            %p.help-block You can use Markdown syntax
+      .form-group
+        = f.label :description, class: 'control-label'
+        = f.text_area :description, class: 'form-control', rows: 5
+        %p.help-block You can use Markdown syntax
 
       .form-group
         = f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@task.new_record? ? "Creating" : "Updating"} Task..." } do

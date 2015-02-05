@@ -41,3 +41,11 @@ abbr.timeago {
 .navmenu {
   width: 250px;
 }
+
+.input-group-addon span.fa.fa-map-marker {
+  min-width: 14px;
+}
+
+textarea#task_description {
+  resize: vertical;
+}
