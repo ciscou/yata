@@ -7,7 +7,7 @@ gem 'rails', '4.0.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'font-awesome-rails'
 gem 'autoprefixer-rails'
