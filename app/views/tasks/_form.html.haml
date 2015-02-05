@@ -73,26 +73,26 @@
         = f.text_area :description, class: 'form-control', rows: 5
         %p.help-block You can use Markdown syntax
 
-      .form-group
-        = f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@task.new_record? ? "Creating" : "Updating"} Task..." } do
-          = icon('check')
-          = @task.new_record? ? "Create" : "Update"
-          Task
+  .form-group
+    = f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@task.new_record? ? "Creating" : "Updating"} Task..." } do
+      = icon('check')
+      = @task.new_record? ? "Create" : "Update"
+      Task
 
-        - if @task.persisted?
-          #delete-confirm-modal.modal
-            .modal-dialog.modal-sm
-              .modal-content
-                .modal-body
-                  %h3 Are you sure?
-                  = link_to @task, method: :delete, class: 'btn btn-danger btn-lg btn-block' do
-                    = icon('trash')
-                    Yes, delete
-                  = link_to "#", data: { dismiss: 'modal' }, class: 'btn btn-default btn-lg btn-block' do
-                    = icon('remove')
-                    No, cancel
-          = link_to icon_and_text('trash', "Delete"), "#", data: { toggle: 'modal', target: '#delete-confirm-modal' }, class: 'btn btn-danger'
+    - if @task.persisted?
+      #delete-confirm-modal.modal
+        .modal-dialog.modal-sm
+          .modal-content
+            .modal-body
+              %h3 Are you sure?
+              = link_to @task, method: :delete, class: 'btn btn-danger btn-lg btn-block' do
+                = icon('trash')
+                Yes, delete
+              = link_to "#", data: { dismiss: 'modal' }, class: 'btn btn-default btn-lg btn-block' do
+                = icon('remove')
+                No, cancel
+      = link_to icon_and_text('trash', "Delete"), "#", data: { toggle: 'modal', target: '#delete-confirm-modal' }, class: 'btn btn-danger'
 
-      = link_to @task.persisted? ? @task : tasks_path, class: 'btn btn-default' do
-        = icon('chevron-left')
-        Back
+  = link_to @task.persisted? ? @task : tasks_path, class: 'btn btn-default' do
+    = icon('chevron-left')
+    Back
