@@ -1,10 +1,10 @@
 module ApplicationHelper
-  def icon(id)
-    content_tag(:span, "", class: "fa fa-#{id}")
+  def icon(id, opts = {})
+    content_tag(:span, "", class: "fa #{"fa-fw" if opts[:fw]} fa-#{id}")
   end
 
-  def icon_and_text(id, text)
-    [icon(id), h(text)].join(" ").html_safe
+  def icon_and_text(id, text, opts = {})
+    [icon(id, opts), h(text)].join(" ").html_safe
   end
 
   def count_and_text(count, text, options = {})
