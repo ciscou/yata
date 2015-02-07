@@ -1,4 +1,7 @@
 - if user_signed_in?
+  %p.hidden-md.hidden-lg
+    = link_to icon_and_text("plus", "New task"), new_task_path, class: "btn btn-block btn-success navbar-btn"
+
   %h2 Filter
 
   .panel.panel-default
