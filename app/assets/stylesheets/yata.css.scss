@@ -42,8 +42,8 @@ abbr.timeago {
   width: 250px;
 }
 
-.input-group-addon span.fa.fa-map-marker {
-  min-width: 14px;
+.input-group-addon .fa {
+  @extend .fa-fw;
 }
 
 textarea#task_description {
