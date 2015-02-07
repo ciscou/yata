@@ -74,7 +74,7 @@
         %p.help-block You can use Markdown syntax
 
   .form-group
-    = f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@task.new_record? ? "Creating" : "Updating"} Task..." } do
+    = f.button class: 'btn btn-success btn-lg', data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> #{@task.new_record? ? "Creating" : "Updating"} Task..." } do
       = icon('check')
       = @task.new_record? ? "Create" : "Update"
       Task

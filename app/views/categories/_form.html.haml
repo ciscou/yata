@@ -10,7 +10,7 @@
           %p.help-block= @category.errors[:name].to_sentence
 
       .form-group
-        = f.button class: 'btn btn-success btn-lg', data: { disable_with: "#{@category.new_record? ? "Creating" : "Updating"} Category..." } do
+        = f.button class: 'btn btn-success btn-lg', data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> #{@category.new_record? ? "Creating" : "Updating"} Category..." } do
           = icon("check")
           = @category.new_record? ? "Create" : "Update"
           Category
