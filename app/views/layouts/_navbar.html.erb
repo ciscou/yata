@@ -6,8 +6,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to tasks_path(category_id: 'all', show: 'todo'), :class => "navbar-brand" do %>
-        <%= image_tag "logo.png" %>
+      <%= link_to tasks_path(category_id: 'all', show: 'todo'), class: "btn btn-success navbar-btn", style: "padding: 5px 6px" do %>
+        <i class="fa fa-check fa-lg"></i>
+      <% end %>
+      <%= link_to tasks_path(category_id: 'all', show: 'todo'), class: "btn btn-link navbar-btn", style: "font-size: 1.5em; padding: 0 15px 0 0" do %>
+        Yata
       <% end %>
       <%= link_to icon_and_text("plus", "New task"), new_task_path, class: "btn btn-success navbar-btn navbar-right" %>
     </div>
