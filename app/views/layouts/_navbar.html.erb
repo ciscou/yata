@@ -7,7 +7,10 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to tasks_path(category_id: 'all', show: 'todo'), :class => "navbar-brand" do %>
-        <%= image_tag "logo.png" %>
+        <span class="btn btn-success">
+          <i class="fa fa-check"></i>
+        </span>
+        Yata
       <% end %>
       <%= link_to icon_and_text("plus", "New task"), new_task_path, class: "btn btn-success navbar-btn navbar-right" %>
     </div>
