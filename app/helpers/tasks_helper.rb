@@ -1,5 +1,5 @@
 module TasksHelper
-  def link_to_destroy_task(task, show = false)
+  def link_to_toggle_task(task, show = false)
     icon, text, level, action = task.done? ? %w[remove Undo default unmark_as_done] : %w[check Yata success mark_as_done]
     level = "danger" if task.delayed?
 
