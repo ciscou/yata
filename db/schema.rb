@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20150210160731) do
     t.string   "name"
     t.datetime "due_at"
     t.boolean  "done",          default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.boolean  "reminder_sent", default: false
     t.integer  "reminder"
     t.string   "token"
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20150210160731) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
