@@ -37,18 +37,22 @@ class Task < ActiveRecord::Base
   before_save :reset_reminder_sent, if: :reminder_params_changed?
   before_save :ensure_url_has_http_protocol, if: :url?
 
-  belongs_to :user
+  has_many :ownerships, dependent: :destroy
+  has_many :users, through: :ownerships
+
   belongs_to :category
 
   validates :name, presence: true
   validate  :chronic_parsed_humanized_due_at
 
   def self.send_reminders
-    pending_to_send_reminder.includes(:user).find_each(&:send_reminder)
+    pending_to_send_reminder.find_each(&:send_reminder)
   end
 
   def send_reminder
-    TaskMailer.reminder(self).deliver
+    users.each do |user|
+      TaskMailer.reminder(self, user.email).deliver
+    end
     update_attribute(:reminder_sent, true)
   end
 

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :tasks, dependent: :destroy
+  has_many :ownerships, dependent: :destroy
+  has_many :tasks, through: :ownerships
   has_many :categories, dependent: :destroy
 
   # Include default devise modules. Others available are:

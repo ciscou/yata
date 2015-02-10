@@ -28,9 +28,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.tasks.new(task_attributes)
+    @task = current_user.tasks.create(task_attributes)
 
-    if @task.save
+    if @task.errors.empty?
       redirect_to @task, notice: 'Task was successfully created.'
     else
       flash.now.alert = "Oops, failed to create task"
@@ -50,8 +50,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = current_user.tasks.find(params[:id])
-    @task.destroy
+    current_user.tasks.destroy(params[:id])
 
     redirect_to tasks_url, notice: "Task was successfully deleted"
   end
