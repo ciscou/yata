@@ -14,7 +14,7 @@ Yata::Application.routes.draw do
   resources :categories, except: :show
 
   resources :shares, only: [] do
-    resource :accept, only: :show
+    resource :accept, only: [:show, :create]
   end
 
   root to: "tasks#index"

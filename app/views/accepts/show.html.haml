@@ -1,0 +1,14 @@
+%h1
+  Import task
+  = @task.name.inspect
+
+.row
+  .col-md-10.col-lg-8
+    = render "tasks/details", task: @task
+
+    = link_to share_accept_path(@task.token), class: 'btn btn-success btn-lg', data: { method: :post, disable_with: "<i class='fa fa-spinner fa-spin'></i> Accepting" } do
+      = icon('check')
+      Accept
+    = link_to root_path, class: 'btn btn-default' do
+      = icon('remove')
+      Cancel

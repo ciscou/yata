@@ -2,73 +2,16 @@
 
 .row
   .col-md-10.col-lg-8
-    %dl.dl-horizontal
-      %dt{class: ("text-danger" if @task.delayed?)}
-        = icon("clock-o")
-        Due at
-      %dd{class: ("text-danger" if @task.delayed?)}
-        %p
-          - if @task.scheduled?
-            = format_due_at @task.due_at
-            %br
-            %em
-              = surround '(', ')' do
-                = jquery_time_ago(@task.due_at)
-          - else
-            Unscheduled
+    = render 'details', task: @task
 
-      %dt= icon_and_text 'bell-o', "Reminder"
-      %dd
-        %p= reminder_options.key(@task.reminder) || "Never"
-
-      %dt= icon_and_text 'repeat', "Repeat every"
-      %dd
-        %p= @task.repeat_every.presence || "Only once"
-
-      - if @task.sub_tasks.any?
-        %dt= icon_and_text 'list', "Sub tasks"
-        %dd
-          %table.table.table-condensed
-            %tbody
-              = render @task.sub_tasks
-
-      - if @task.category.present?
-        %dt= icon_and_text 'tag', "Category"
-        %dd
-          %p= @task.category.name
-
-      - if @task.url.present?
-        %dt= icon_and_text 'external-link', "Url"
-        %dd
-          %p= link_to truncate(@task.url, length: 40), @task.url, target: "_blank"
-
-      - if @task.location.present?
-        %dt= icon_and_text 'map-marker', "Location"
-        %dd
-          %p
-            = @task.location
-            %br
-            = link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location), target: "_blank"
-
-      - if @task.image?
-        %dt= icon_and_text 'camera', "Image"
-        %dd
-          %p
-            = link_to @task.image.url, target: '_blank' do
-              = cl_image_tag @task.image, class: 'img-responsive', width: 600, height: 480, crop: :thumb, gravity: :center
-
-      - if @task.description.present?
-        %dt= icon_and_text 'align-left', "Description"
-        %dd= markdown @task.description
-
-      = form_tag task_shares_path(@task) do |f|
-        %strong Share this task
-        .form-group
-          .input-group
-            .input-group-addon= icon 'share-alt'
-            = email_field_tag :email, nil, required: true, placeholder: "someone@example.com", class: "form-control"
-            .input-group-btn
-              = submit_tag "Share", class: "btn btn-default"
+    = form_tag task_shares_path(@task) do |f|
+      %strong Share this task
+      .form-group
+        .input-group
+          .input-group-addon= icon 'share-alt'
+          = email_field_tag :email, nil, required: true, placeholder: "someone@example.com", class: "form-control"
+          .input-group-btn
+            = submit_tag "Share", class: "btn btn-default"
 
     = link_to icon_and_text('chevron-left', "Back"), tasks_path, class: 'btn btn-default'
     = link_to icon_and_text('pencil', "Edit"), edit_task_path(@task), class: 'btn btn-default'

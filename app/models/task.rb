@@ -122,13 +122,6 @@ class Task < ActiveRecord::Base
     update_attributes!(token: SecureRandom.hex) unless token?
   end
 
-  def build_accept_for(user)
-    user.tasks.new do |task|
-      task.attributes = attributes.slice("name", "due_at", "repeat_every", "reminder", "url", "location", "description")
-      task.sub_tasks_attributes = sub_tasks.map { |st| st.attributes.slice("name") }
-    end
-  end
-
   private
 
   def periodicity
