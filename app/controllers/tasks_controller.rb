@@ -81,7 +81,7 @@ class TasksController < ApplicationController
   end
 
   def clear
-    current_user.tasks.done.destroy_all
+    current_user.clear_done_tasks
 
     redirect_to tasks_url(show: 'done'), notice: "Done tasks were successfully cleared"
   end

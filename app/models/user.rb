@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def clear_done_tasks
+    tasks.done.each do |task|
+      tasks.destroy task
+    end
+  end
 end
