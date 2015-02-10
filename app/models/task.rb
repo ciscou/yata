@@ -32,6 +32,8 @@ class Task < ActiveRecord::Base
 
   accepts_nested_attributes_for :sub_tasks, allow_destroy: true, reject_if: :all_blank
 
+  mount_uploader :image, ImageUploader
+
   before_save :reset_reminder_sent, if: :reminder_params_changed?
   before_save :ensure_url_has_http_protocol, if: :url?
 

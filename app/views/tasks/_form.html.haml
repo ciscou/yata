@@ -68,6 +68,12 @@
               .input-group-addon= icon('map-marker')
               = f.text_field :location, class: 'form-control'
 
+          .form-group
+            = f.label :image, class: 'control-label'
+            .input-group
+              .input-group-addon= icon('camera')
+              = f.file_field :image, class: 'form-control'
+
       .form-group
         = f.label :description, class: 'control-label'
         = f.text_area :description, class: 'form-control', rows: 5

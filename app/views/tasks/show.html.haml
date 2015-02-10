@@ -50,6 +50,13 @@
             %br
             = link_to "Open in Google Maps", root_url(protocol: "https://", host: "maps.google.es", port: nil, q: @task.location), target: "_blank"
 
+      - if @task.image?
+        %dt= icon_and_text 'camera', "Image"
+        %dd
+          %p
+            = link_to @task.image.url, target: '_blank' do
+              = cl_image_tag @task.image, class: 'img-responsive', width: 600, height: 480, crop: :thumb, gravity: :center
+
       - if @task.description.present?
         %dt= icon_and_text 'align-left', "Description"
         %dd= markdown @task.description
