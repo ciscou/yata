@@ -6,9 +6,5 @@
   .col-md-10.col-lg-8
     = render "tasks/details", task: @task
 
-    = link_to share_accept_path(@task.token), class: 'btn btn-success btn-lg', data: { method: :post, disable_with: "<i class='fa fa-spinner fa-spin'></i> Accepting" } do
-      = icon('check')
-      Accept
-    = link_to root_path, class: 'btn btn-default' do
-      = icon('remove')
-      Cancel
+    = link_to icon_and_text('check', "Accept"), share_accept_path(@task.token), class: 'btn btn-success btn-lg', data: { method: :post, disable_with: "<i class='fa fa-spinner fa-spin'></i> Accepting" }
+    = link_to icon_and_text('remove', "Cancel"), root_path, class: 'btn btn-default'
