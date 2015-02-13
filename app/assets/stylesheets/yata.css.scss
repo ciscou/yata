@@ -6,9 +6,41 @@
   }
 }
 
-tr.task.done {
+.task {
+  a.mark-as-done, a.unmark-as-done {
+    display: none;
+  }
+}
+
+.task.todo {
+  a.mark-as-done {
+    display: inline-block;
+  }
+}
+
+.task.done {
   td.name, td span.due_at {
     text-decoration: line-through;
+  }
+
+  a.unmark-as-done {
+    display: inline-block;
+  }
+}
+
+.task.on-time {
+  a.mark-as-done {
+    @extend .btn-success
+  }
+
+  a.unmark-as-done {
+    @extend .btn-default
+  }
+}
+
+.task.delayed {
+  a.mark-as-done, a.unmark-as-done {
+    @extend .btn-danger
   }
 }
 
@@ -16,6 +48,12 @@ tr.task.delayed {
   @extend .danger;
 
   td.name a, td span.due_at {
+    @extend .text-danger;
+  }
+}
+
+.task.delayed dl {
+  dt.due_at, dd.due_at {
     @extend .text-danger;
   }
 }

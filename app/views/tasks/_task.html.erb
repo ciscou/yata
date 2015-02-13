@@ -1,4 +1,4 @@
-<%= content_tag_for :tr, task, :class => task_class(task) do %>
+<%= content_tag_for :tr, task, :class => task_class(task), data: { due_at: task.due_at.to_s } do %>
   <td class="name">
     <%= link_to truncate(task.name, :length => 60), task %>
     <% if task.sub_tasks.any? %>
@@ -7,6 +7,7 @@
   </td>
   <td class="due_at_and_actions">
     <span class="due_at"><%= task.due_at.to_s(:time) %></span>
-    <%= link_to_toggle_task task %>
+    <%= link_to icon_and_text('check',  "Yata"), [  :mark_as_done, task], remote: true, method: :patch, class: "btn btn-xs   mark-as-done", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Wait" } %>
+    <%= link_to icon_and_text('remove', "Undo"), [:unmark_as_done, task], remote: true, method: :patch, class: "btn btn-xs unmark-as-done", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Wait" } %>
   </td>
 <% end %>

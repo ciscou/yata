@@ -1,8 +1,8 @@
 %dl.dl-horizontal
-  %dt{class: ("text-danger" if task.delayed?)}
+  %dt.due_at
     = icon("clock-o")
     Due at
-  %dd{class: ("text-danger" if task.delayed?)}
+  %dd.due_at
     %p
       - if task.scheduled?
         = format_due_at task.due_at

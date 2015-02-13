@@ -1,17 +1,4 @@
 module TasksHelper
-  def link_to_toggle_task(task, show = false)
-    icon, text, level, action = task.done? ? %w[remove Undo default unmark_as_done] : %w[check Yata success mark_as_done]
-    level = "danger" if task.delayed?
-
-    link_to icon_and_text(icon, text), [action, task],
-      remote: !show,
-      method: :patch,
-      class:  "btn btn-#{level} #{show ? "btn-lg" : "btn-xs"}",
-      data: {
-        disable_with: "<i class='fa fa-spinner fa-spin'></i> Wait"
-      }
-  end
-
   def reminder_options
     {
       "On time"             => 0,

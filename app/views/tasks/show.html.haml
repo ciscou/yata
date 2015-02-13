@@ -1,6 +1,6 @@
 %h1= @task.name
 
-.row
+.row.task{class: task_class(@task), data: { due_at: @task.due_at.to_s }}
   .col-md-10.col-lg-8
     = render 'details', task: @task
 
@@ -15,4 +15,5 @@
 
     = link_to icon_and_text('chevron-left', "Back"), tasks_path, class: 'btn btn-default'
     = link_to icon_and_text('pencil', "Edit"), edit_task_path(@task), class: 'btn btn-default'
-    = link_to_toggle_task(@task, true)
+    = link_to icon_and_text('check',  "Yata"), [:mark_as_done,   @task], method: :patch, class: "btn btn-lg   mark-as-done", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Wait" }
+    = link_to icon_and_text('remove', "Undo"), [:unmark_as_done, @task], method: :patch, class: "btn btn-lg unmark-as-done", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Wait" }
