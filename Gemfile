@@ -8,6 +8,7 @@ gem 'rails', '4.0.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'redis'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'font-awesome-rails'
 gem 'autoprefixer-rails'

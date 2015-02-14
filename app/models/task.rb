@@ -61,6 +61,8 @@ class Task < ActiveRecord::Base
   end
 
   def mark_as_done!
+    $redis.publish "sockjs-demo:yata:task", { id: id, done: true }.to_json
+
     if repeat_every?
       self.due_at += periodicity
       save!
@@ -72,6 +74,8 @@ class Task < ActiveRecord::Base
   end
 
   def unmark_as_done!
+    $redis.publish "sockjs-demo:yata:task", { id: id, done: false }.to_json
+
     if repeat_every?
       self.due_at -= periodicity
       save!

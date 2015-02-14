@@ -1,4 +1,3 @@
-# config/unicorn.rb
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
@@ -11,6 +10,8 @@ before_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
+
+  $redis.quit
 end
 
 after_fork do |server, worker|
@@ -20,4 +21,6 @@ after_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
+
+  $redis = Redis.new url: (ENV["REDISTOGO_URL"] || "redis://localhost:6379")
 end
