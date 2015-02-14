@@ -71,7 +71,7 @@ tr.task td.due_at_and_actions {
   a.toggle-done {
     @extend .btn-success;
 
-    i.fa {
+    i.fa.toggle {
       @extend .fa-check;
     }
   }
@@ -85,7 +85,7 @@ tr.task td.due_at_and_actions {
   a.toggle-done {
     @extend .btn-default;
 
-    i.fa {
+    i.fa.toggle {
       @extend .fa-remove;
     }
   }
