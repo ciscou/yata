@@ -16,4 +16,5 @@
 //= require jasny-bootstrap
 //= require jquery.timeago
 //= require cocoon
+//= require sockjs-0.3.4.min
 //= require_tree .
