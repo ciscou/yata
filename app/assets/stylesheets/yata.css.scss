@@ -28,7 +28,7 @@
   }
 }
 
-.task.on-time {
+.task {
   a.mark-as-done {
     @extend .btn-success
   }
@@ -38,13 +38,13 @@
   }
 }
 
-.task.delayed {
+.task.todo.delayed {
   a.mark-as-done, a.unmark-as-done {
     @extend .btn-danger
   }
 }
 
-tr.task.delayed {
+tr.task.todo.delayed {
   @extend .danger;
 
   td.name a, td span.due_at {
@@ -52,7 +52,7 @@ tr.task.delayed {
   }
 }
 
-.task.delayed dl {
+.task.todo.delayed dl {
   dt.due_at, dd.due_at {
     @extend .text-danger;
   }

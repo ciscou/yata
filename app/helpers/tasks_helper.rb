@@ -47,8 +47,8 @@ module TasksHelper
 
   def task_class(task)
     [
-      task.done?    ? "done"    : "todo",
-      task.delayed? ? "delayed" : "on-time"
+      task.done?        ? "done"    : "todo",
+      task.due_at.past? ? "delayed" : "on-time"
     ].join(" ")
   end
 

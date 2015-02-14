@@ -106,18 +106,6 @@ class Task < ActiveRecord::Base
     !!due_at?
   end
 
-  def unscheduled?
-    !scheduled?
-  end
-
-  def todo?
-    !done?
-  end
-
-  def delayed?
-    todo? && due_at.past?
-  end
-
   def ensure_token!
     update_attributes!(token: SecureRandom.hex) unless token?
   end
