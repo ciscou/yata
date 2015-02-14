@@ -70,6 +70,10 @@ tr.task td.due_at_and_actions {
 .sub_task.todo {
   a.toggle-done {
     @extend .btn-success;
+
+    i.fa {
+      @extend .fa-check;
+    }
   }
 }
 
@@ -80,6 +84,10 @@ tr.task td.due_at_and_actions {
 
   a.toggle-done {
     @extend .btn-default;
+
+    i.fa {
+      @extend .fa-remove;
+    }
   }
 }
 
