@@ -67,6 +67,22 @@ tr.task td.due_at_and_actions {
   }
 }
 
+.sub_task.todo {
+  a.toggle-done {
+    @extend .btn-success;
+  }
+}
+
+.sub_task.done {
+  .name {
+    text-decoration: line-through;
+  }
+
+  a.toggle-done {
+    @extend .btn-default;
+  }
+}
+
 body {
   margin-bottom: 24px;
 }
