@@ -46,7 +46,9 @@ class Task < ActiveRecord::Base
   validate  :chronic_parsed_humanized_due_at
 
   def self.send_reminders
+    return false unless $redis.set "send_reminders", "running", ex: 10, nx: true
     pending_to_send_reminder.find_each(&:send_reminder)
+    true
   end
 
   def send_reminder

@@ -3,8 +3,8 @@ class RemindersController < ApplicationController
 
   def index
     if params[:key].present? && params[:key] == ENV['REMINDERS_KEY']
-      Task.send_reminders
-      render json: { success: true }
+      sent = Task.send_reminders
+      render json: { success: true, sent: sent }
     else
       render json: { success: false }, status: :unauthorized
     end
