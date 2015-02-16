@@ -13,6 +13,12 @@
             = email_field_tag :email, nil, required: true, placeholder: "someone@example.com", class: "form-control"
             .input-group-btn
               = submit_tag "Share", class: "btn btn-default"
+          - shared_with = @task.users.pluck(:email)
+          - shared_with.delete(current_user.email)
+          - if shared_with.any?
+            %p.help-block
+              Already shared with
+              = shared_with.to_sentence
 
       = link_to icon_and_text('chevron-left', "Back"), tasks_path, class: 'btn btn-default'
       = link_to icon_and_text('pencil', "Edit"), edit_task_path(@task), class: 'btn btn-default'
