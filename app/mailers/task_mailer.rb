@@ -8,6 +8,6 @@ class TaskMailer < ActionMailer::Base
 
   def share(task, from, to)
     @task = task
-    mail(from: from, to: to, subject: "[Yata] I want to share a task with you!")
+    mail(from: from, to: to, subject: "[Yata] #{task.name}")
   end
 end
