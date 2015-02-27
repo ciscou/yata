@@ -55,4 +55,4 @@
 
   - if task.description.present?
     %dt= icon_and_text 'align-left', "Description"
-    %dd= markdown task.description
+    %dd.markdown= markdown task.description
