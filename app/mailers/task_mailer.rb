@@ -1,9 +1,9 @@
 class TaskMailer < ActionMailer::Base
   helper :tasks, :markdown
 
-  def reminder(task, email)
+  def reminder(task)
     @task = task
-    mail(from: "reminders@y-a-t-a.herokuapp.com", to: email, subject: "[Yata] #{task.name}")
+    mail(from: "reminders@y-a-t-a.herokuapp.com", to: users.map(&:email), subject: "[Yata] #{task.name}")
   end
 
   def share(task, from, to)
