@@ -23,6 +23,10 @@ class NullDueAt
     self
   end
 
+  def wday
+    999
+  end
+
   def to_s(format = nil)
     case format
     when :time

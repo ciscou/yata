@@ -6,6 +6,26 @@
   }
 }
 
+table.wday-0,
+table.wday-1,
+table.wday-2,
+table.wday-3,
+table.wday-4,
+table.wday-5,
+table.wday-6,
+table.wday-999 {
+  border-left: 5px solid $gray-lighter;
+}
+
+table.wday-0,
+table.wday-6 {
+  border-left: 5px solid $state-danger-border;
+}
+
+table.wday-5 {
+  border-left: 5px dotted $state-danger-border;
+}
+
 .task {
   a.mark-as-done, a.unmark-as-done {
     display: none;
