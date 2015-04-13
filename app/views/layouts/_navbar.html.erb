@@ -1,11 +1,13 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-target="#sidebar" data-toggle="offcanvas" data-canvas="body" data-placement="right">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+      <% if user_signed_in? %>
+        <button type="button" class="navbar-toggle collapsed" data-target="#sidebar" data-toggle="offcanvas" data-canvas="body" data-placement="right">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      <% end %>
       <%= link_to tasks_path(category_id: 'all', show: 'todo'), :class => "navbar-brand" do %>
         <span class="btn btn-success">
           <i class="fa fa-check fa-lg"></i>
@@ -14,7 +16,9 @@
       <% end %>
     </div>
     <div class="collapse navbar-collapse">
-      <%= link_to icon_and_text("plus", "New task"), new_task_path, class: "btn btn-success navbar-btn navbar-right" %>
+      <% if user_signed_in? %>
+        <%= link_to icon_and_text("plus", "New task"), new_task_path, class: "btn btn-success navbar-btn navbar-right" %>
+      <% end %>
     </div>
   </div>
 </nav>
