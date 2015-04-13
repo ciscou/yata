@@ -27,6 +27,14 @@ class NullDueAt
     999
   end
 
+  def hash
+    [self.class.name, wday].hash
+  end
+
+  def eql?(other)
+    wday.eql? other.wday
+  end
+
   def to_s(format = nil)
     case format
     when :time
