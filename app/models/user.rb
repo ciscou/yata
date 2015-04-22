@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
       tasks.destroy task
     end
   end
+
+  def category_names
+    tasks
+      .select('distinct(category_name)')
+      .reorder(nil).where.not(category_name: [nil, ''])
+      .pluck(:category_name)
+  end
 end

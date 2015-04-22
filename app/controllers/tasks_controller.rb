@@ -1,13 +1,16 @@
 class TasksController < ApplicationController
   before_filter :pick_show_parameter, only: :index
-  before_filter :load_category, only: [:index, :new]
+  before_filter :load_category_name, only: [:index, :new]
 
   def index
     @tasks = current_user.tasks.send(@show)
-    if @category
-      @tasks = @tasks.where(category_id: @category.id)
-    elsif @category_id == 'uncategorized'
-      @tasks = @tasks.where(category_id: nil)
+
+    if @category_name == 'uncategorized'
+      @tasks = @tasks.where(category_name: [nil, ''])
+    elsif @category_name == 'all'
+      # no-op
+    elsif @category_name
+      @tasks = @tasks.where(category_name: @category_name)
     end
   end
 
@@ -18,7 +21,7 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.new
-    @task.category = @category
+    @task.category_name = @category_name unless %w[all uncategorized].include?(@category_name)
     @task.sub_tasks.build
   end
 
@@ -94,13 +97,9 @@ class TasksController < ApplicationController
     session[:show] = @show
   end
 
-  def load_category
-    @category_id = params[:category_id].presence || session[:category_id].presence || 'all'
-    session[:category_id] = @category_id
-
-    if %w[all uncategorized].exclude?(@category_id)
-      @category = current_user.categories.find(@category_id)
-    end
+  def load_category_name
+    @category_name = params[:category_name].presence || session[:category_name].presence || "all"
+    session[:category_name] = @category_name
   end
 
   def task_attributes

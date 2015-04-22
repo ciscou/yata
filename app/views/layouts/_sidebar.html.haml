@@ -9,21 +9,21 @@
     .list-group
       - Task::SCOPES.each do |show, text|
         - count = current_user.tasks.send(show).count
-        = link_to tasks_path(category_id: 'all', show: show), class: "list-group-item #{'list-group-item-danger' if show == 'delayed' && count > 0} #{'active' if @category_id == 'all' && @show == show}" do
+        = link_to tasks_path(category_name: 'all', show: show), class: "list-group-item #{'list-group-item-danger' if show == 'delayed' && count > 0} #{'active' if @category_name == 'all' && @show == show}" do
           = text
           %span#counter-by-due-at.label{id: show, class: "#{show == 'delayed' && count > 0 ? 'label-danger' : 'label-info'}"}= count
 
   .panel.panel-default
     .panel-heading By category
     .list-group
-      - current_user.categories(true).each do |category|
-        = link_to tasks_path(category_id: category.id, show: 'todo'), class: "list-group-item #{'active' if @category == category && @show == 'todo'}" do
-          = category.name
-          %span#counter-by-category.label.label-info{id: category.id}= current_user.tasks.where(category_id: category.id).todo.count
-      = link_to tasks_path(category_id: 'uncategorized', show: 'todo'), class: "list-group-item #{'active' if @category_id == 'uncategorized' && @show == 'todo'}" do
+      - current_user.category_names.each do |category_name|
+        = link_to tasks_path(category_name: category_name, show: 'todo'), class: "list-group-item #{'active' if @category_name == category_name && @show == 'todo'}" do
+          = category_name
+          %span#counter-by-category.label.label-info{id: category_name.parameterize}= current_user.tasks.where(category_name: category_name).todo.count
+      = link_to tasks_path(category_name: 'uncategorized', show: 'todo'), class: "list-group-item #{'active' if @category_name == 'uncategorized' && @show == 'todo'}" do
         = "Uncategorized"
-        %span#counter-by-category.label.label-info{id: 'uncategorized'}= current_user.tasks.where(category_id: nil).todo.count
-      = link_to tasks_path(category_id: 'all', show: 'todo'), class: "list-group-item #{'active' if @category_id == 'all' && @show == 'todo'}" do
+        %span#counter-by-category.label.label-info{id: 'uncategorized'}= current_user.tasks.where(category_name: [nil, '']).todo.count
+      = link_to tasks_path(category_name: 'all', show: 'todo'), class: "list-group-item #{'active' if @category_name == 'all' && @show == 'todo'}" do
         = "All categories"
         %span#counter-by-category.label.label-info{id: 'all'}= current_user.tasks.todo.count
       = link_to icon_and_text('cog', "Manage categories"), categories_path, class: "list-group-item #{'active' if controller_name == 'categories'}"

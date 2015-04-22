@@ -1,6 +1,6 @@
 <h1>
   <%= pluralize @tasks.count, "Task" %>
-  <small><%= tasks_index_subtitle(@show, @category_id, @category) %></small>
+  <small><%= tasks_index_subtitle(@show, @category_name) %></small>
 </h1>
 
 <% if @tasks.any? %>

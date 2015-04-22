@@ -52,11 +52,11 @@ module TasksHelper
     ].join(" ")
   end
 
-  def tasks_index_subtitle(show, category_id, category)
-    if category.present?
-      category.name
-    elsif category_id == 'uncategorized'
+  def tasks_index_subtitle(show, category_name)
+    if category_name == 'uncategorized'
       "Uncategorized"
+    elsif category_name.present? && category_name != 'all'
+      category_name
     else
       Task::SCOPES[show] unless show == 'todo'
     end
