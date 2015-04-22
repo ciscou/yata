@@ -51,10 +51,10 @@
       .row
         .col-md-10.col-lg-8
           .form-group
-            = f.label :category_id, class: 'control-label'
+            = f.label :category_name, class: 'control-label'
             .input-group
               .input-group-addon= icon('tag')
-              = f.collection_select :category_id, current_user.categories, :id, :name, { include_blank: true }, class: 'form-control'
+              = f.text_field :category_name, class: 'form-control'
 
           .form-group
             = f.label :url, class: 'control-label'
