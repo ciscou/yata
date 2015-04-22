@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require jasny-bootstrap
 //= require jquery.timeago
+//= require bootstrap3-typeahead
 //= require cocoon
 //= require sockjs-0.3.4.min
 //= require_tree .
