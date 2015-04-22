@@ -42,8 +42,6 @@ class Task < ActiveRecord::Base
   has_many :ownerships, dependent: :destroy
   has_many :users, through: :ownerships
 
-  belongs_to :category
-
   validates :name, presence: true
   validate  :chronic_parsed_humanized_due_at
 
