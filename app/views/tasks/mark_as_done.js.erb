@@ -1,6 +1,6 @@
 $("#task_<%= @task.id %>").replaceWith($("<%= j render @task %>"));
 
-<% Task::SCOPES.each do |show, _| %>
+<% Task::SCOPES.keys.each do |show| %>
   <% count = current_user.tasks.send(show).count %>
   $('#counter-by-due-at_<%= show %>').text("<%= count %>");
   <% if show == 'delayed' %>
@@ -14,5 +14,5 @@ $("#task_<%= @task.id %>").replaceWith($("<%= j render @task %>"));
 <% current_user.category_names.each do |category_name| %>
   $('#counter-by-category_<%= category_name.parameterize %>').text("<%= current_user.tasks.where(category_name: category_name).todo.count %>");
 <% end %>
-$('#counter-by-category_uncategorized').text("<%= current_user.tasks.where(category_name: [nil, '']).todo.count %>");
+$('#counter-by-category_uncategorized').text("<%= current_user.tasks.uncategorized.todo.count %>");
 $('#counter-by-category_all').text("<%= current_user.tasks.todo.count %>");

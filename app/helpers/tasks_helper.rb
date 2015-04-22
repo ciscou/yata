@@ -61,4 +61,8 @@ module TasksHelper
       Task::SCOPES[show] unless show == 'todo'
     end
   end
+
+  def todo_tasks_path
+    tasks_path
+  end
 end

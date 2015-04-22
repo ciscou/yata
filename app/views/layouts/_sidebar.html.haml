@@ -9,7 +9,7 @@
     .list-group
       - Task::SCOPES.each do |show, text|
         - count = current_user.tasks.send(show).count
-        = link_to tasks_path(category_name: 'all', show: show), class: "list-group-item #{'list-group-item-danger' if show == 'delayed' && count > 0} #{'active' if @category_name == 'all' && @show == show}" do
+        = link_to send("#{show}_tasks_path"), class: "list-group-item #{'list-group-item-danger' if show == 'delayed' && count > 0} #{'active' if action_name == (show == 'todo' ? 'index' : show)}" do
           = text
           %span#counter-by-due-at.label{id: show, class: "#{show == 'delayed' && count > 0 ? 'label-danger' : 'label-info'}"}= count
 
@@ -17,16 +17,15 @@
     .panel-heading By category
     .list-group
       - current_user.category_names.each do |category_name|
-        = link_to tasks_path(category_name: category_name, show: 'todo'), class: "list-group-item #{'active' if @category_name == category_name && @show == 'todo'}" do
+        = link_to by_category_tasks_path(category_name: category_name), class: "list-group-item #{'active' if action_name == 'by_category' && category_name == params['category_name']}" do
           = category_name
-          %span#counter-by-category.label.label-info{id: category_name.parameterize}= current_user.tasks.where(category_name: category_name).todo.count
-      = link_to tasks_path(category_name: 'uncategorized', show: 'todo'), class: "list-group-item #{'active' if @category_name == 'uncategorized' && @show == 'todo'}" do
+          %span#counter-by-category.label.label-info{id: category_name.parameterize}= current_user.tasks.todo.where(category_name: category_name).count
+      = link_to uncategorized_tasks_path, class: "list-group-item #{'active' if action_name == 'uncategorized'}" do
         = "Uncategorized"
-        %span#counter-by-category.label.label-info{id: 'uncategorized'}= current_user.tasks.where(category_name: [nil, '']).todo.count
-      = link_to tasks_path(category_name: 'all', show: 'todo'), class: "list-group-item #{'active' if @category_name == 'all' && @show == 'todo'}" do
+        %span#counter-by-category.label.label-info{id: 'uncategorized'}= current_user.tasks.todo.uncategorized.count
+      = link_to tasks_path, class: "list-group-item #{'active' if controller_name == 'tasks' && action_name == 'index'}" do
         = "All categories"
         %span#counter-by-category.label.label-info{id: 'all'}= current_user.tasks.todo.count
-      = link_to icon_and_text('cog', "Manage categories"), categories_path, class: "list-group-item #{'active' if controller_name == 'categories'}"
 
   %h2 User
 

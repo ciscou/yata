@@ -1,17 +1,46 @@
 class TasksController < ApplicationController
-  before_filter :pick_show_parameter, only: :index
-  before_filter :load_category_name, only: [:index, :new]
-
   def index
-    @tasks = current_user.tasks.send(@show)
+    @tasks = current_user.tasks.todo
+  end
 
-    if @category_name == 'uncategorized'
-      @tasks = @tasks.where(category_name: [nil, ''])
-    elsif @category_name == 'all'
-      # no-op
-    elsif @category_name
-      @tasks = @tasks.where(category_name: @category_name)
-    end
+  def delayed
+    @tasks = current_user.tasks.delayed
+    render :index
+  end
+
+  def today
+    @tasks = current_user.tasks.today
+    render :index
+  end
+
+  def tomorrow
+    @tasks = current_user.tasks.tomorrow
+    render :index
+  end
+
+  def later
+    @tasks = current_user.tasks.later
+    render :index
+  end
+
+  def unscheduled
+    @tasks = current_user.tasks.unscheduled
+    render :index
+  end
+
+  def done
+    @tasks = current_user.tasks.done
+    render :index
+  end
+
+  def by_category
+    @tasks = current_user.tasks.todo.where(category_name: params[:category_name])
+    render :index
+  end
+
+  def uncategorized
+    @tasks = current_user.tasks.todo.uncategorized
+    render :index
   end
 
   def show
@@ -21,7 +50,6 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.new
-    @task.category_name = @category_name unless %w[all uncategorized].include?(@category_name)
     @task.sub_tasks.build
   end
 
@@ -90,17 +118,6 @@ class TasksController < ApplicationController
   end
 
   private
-
-  def pick_show_parameter
-    @show  = params[:show] || session[:show]
-    @show  = "todo" unless @show.in? Task::SCOPES
-    session[:show] = @show
-  end
-
-  def load_category_name
-    @category_name = params[:category_name].presence || session[:category_name].presence || "all"
-    session[:category_name] = @category_name
-  end
 
   def task_attributes
     params.require(:task).permit!
