@@ -42,6 +42,7 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.new
+    @task.category_name = params[:category_name]
     @task.sub_tasks.build
   end
 
