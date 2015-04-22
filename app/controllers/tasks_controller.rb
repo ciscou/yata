@@ -5,42 +5,34 @@ class TasksController < ApplicationController
 
   def delayed
     @tasks = current_user.tasks.delayed
-    render :index
   end
 
   def today
     @tasks = current_user.tasks.today
-    render :index
   end
 
   def tomorrow
     @tasks = current_user.tasks.tomorrow
-    render :index
   end
 
   def later
     @tasks = current_user.tasks.later
-    render :index
   end
 
   def unscheduled
     @tasks = current_user.tasks.unscheduled
-    render :index
   end
 
   def done
     @tasks = current_user.tasks.done
-    render :index
   end
 
   def by_category
     @tasks = current_user.tasks.todo.where(category_name: params[:category_name])
-    render :index
   end
 
   def uncategorized
     @tasks = current_user.tasks.todo.uncategorized
-    render :index
   end
 
   def show

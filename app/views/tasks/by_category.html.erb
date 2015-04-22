@@ -1,0 +1,10 @@
+<h1>
+  <%= pluralize @tasks.count, "Task" %>
+  <small><%= params[:category_name] %></small>
+</h1>
+
+<%= render 'tasks' %>
+
+<div class="main-button">
+  <%= link_to icon_and_text("plus", "Add another task"), new_task_path(category_name: params[:category_name]), class: 'btn btn-success btn-lg btn-block' %>
+</div>

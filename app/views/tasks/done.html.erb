@@ -1,0 +1,10 @@
+<h1>
+  <%= pluralize @tasks.count, "Task" %>
+  <small>Done</small>
+</h1>
+
+<%= render 'tasks' %>
+
+<div class="main-button">
+  <%= link_to icon_and_text("remove", "Clear done tasks"), clear_tasks_path, class: 'btn btn-danger btn-lg btn-block', method: :delete %>
+</div>

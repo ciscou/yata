@@ -8,7 +8,7 @@
           <span class="icon-bar"></span>
         </button>
       <% end %>
-      <%= link_to tasks_path(category_name: 'all', show: 'todo'), :class => "navbar-brand" do %>
+      <%= link_to tasks_path, :class => "navbar-brand" do %>
         <span class="btn btn-success">
           <i class="fa fa-check fa-lg"></i>
         </span>
@@ -17,7 +17,7 @@
     </div>
     <div class="collapse navbar-collapse">
       <% if user_signed_in? %>
-        <%= link_to icon_and_text("plus", "New task"), new_task_path, class: "btn btn-success navbar-btn navbar-right" %>
+        <%= link_to icon_and_text("plus", "New task"), new_task_path(category_name: params[:category_name]), class: "btn btn-success navbar-btn navbar-right" %>
       <% end %>
     </div>
   </div>

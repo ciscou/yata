@@ -1,0 +1,12 @@
+<% if @tasks.any? %>
+  <% @tasks.group_by { |task| task.due_at.to_date }.each do |date, tasks| %>
+    <strong><%= date.strftime("%A, %B %e, %Y") %></strong>
+    <table class="table table-striped wday-<%= date.wday %>">
+      <tbody>
+        <%= render tasks %>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <div class="well">Yahoo! Nothing to do.</div>
+<% end %>
