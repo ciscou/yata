@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def category_names
+  def categories
     tasks
-      .select('distinct(category_name)').reorder(nil)
-      .map(&:category_name).select(&:present?)
+      .select('distinct(category)').reorder(nil)
+      .map(&:category).select(&:present?)
   end
 end

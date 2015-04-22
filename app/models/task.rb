@@ -22,7 +22,7 @@ class Task < ActiveRecord::Base
   scope :tomorrow, -> { scheduled.where("due_at between ? and ?", Time.current.tomorrow.beginning_of_day, Time.current.tomorrow.end_of_day) }
   scope :later,    -> { scheduled.where("due_at > ?", Time.current.tomorrow.end_of_day) }
 
-  scope :uncategorized, -> { where(category_name: [nil, '']) }
+  scope :uncategorized, -> { where(category: [nil, '']) }
 
   scope :pending_to_send_reminder, -> {
     scheduled.where(reminder_sent: false).

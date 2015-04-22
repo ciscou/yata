@@ -1,6 +1,6 @@
 - if user_signed_in?
   %p.hidden-md.hidden-lg
-    = link_to icon_and_text("plus", "New task"), new_task_path(category_name: params[:category_name]), class: "btn btn-block btn-success navbar-btn"
+    = link_to icon_and_text("plus", "New task"), new_task_path(category: params[:category]), class: "btn btn-block btn-success navbar-btn"
 
   %h2 Filter
 
@@ -16,10 +16,10 @@
   .panel.panel-default
     .panel-heading By category
     .list-group
-      - current_user.category_names.each do |category_name|
-        = link_to by_category_tasks_path(category_name: category_name), class: "list-group-item #{'active' if action_name == 'by_category' && category_name == params['category_name']}" do
-          = category_name
-          %span#counter-by-category.label.label-info{id: category_name.parameterize}= current_user.tasks.todo.where(category_name: category_name).count
+      - current_user.categories.each do |category|
+        = link_to by_category_tasks_path(category: category), class: "list-group-item #{'active' if action_name == 'by_category' && category == params['category']}" do
+          = category
+          %span#counter-by-category.label.label-info{id: category.parameterize}= current_user.tasks.todo.where(category: category).count
       = link_to uncategorized_tasks_path, class: "list-group-item #{'active' if action_name == 'uncategorized'}" do
         = "Uncategorized"
         %span#counter-by-category.label.label-info{id: 'uncategorized'}= current_user.tasks.todo.uncategorized.count

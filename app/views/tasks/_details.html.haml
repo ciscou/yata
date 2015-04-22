@@ -28,10 +28,10 @@
         %tbody
           = render task.sub_tasks
 
-  - if task.category_name.present?
+  - if task.category.present?
     %dt= icon_and_text 'tag', "Category"
     %dd
-      %p= task.category_name
+      %p= task.category
 
   - if task.url.present?
     %dt= icon_and_text 'external-link', "Url"

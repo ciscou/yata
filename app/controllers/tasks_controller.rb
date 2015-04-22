@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   end
 
   def by_category
-    @tasks = current_user.tasks.todo.where(category_name: params[:category_name])
+    @tasks = current_user.tasks.todo.where(category: params[:category])
   end
 
   def uncategorized
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
 
   def new
     @task = current_user.tasks.new
-    @task.category_name = params[:category_name]
+    @task.category = params[:category]
     @task.sub_tasks.build
   end
 

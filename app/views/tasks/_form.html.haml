@@ -51,10 +51,10 @@
       .row
         .col-md-10.col-lg-8
           .form-group
-            = f.label :category_name, class: 'control-label'
+            = f.label :category, class: 'control-label'
             .input-group
               .input-group-addon= icon('tag')
-              = f.text_field :category_name, class: 'form-control typeahead', autocomplete: 'off', data: { suggestions: current_user.category_names }
+              = f.text_field :category, class: 'form-control typeahead', autocomplete: 'off', data: { suggestions: current_user.categories }
 
           .form-group
             = f.label :url, class: 'control-label'
