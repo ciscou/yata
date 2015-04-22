@@ -19,7 +19,7 @@
       - current_user.categories.each do |category|
         = link_to by_category_tasks_path(category: category), class: "list-group-item #{'active' if action_name == 'by_category' && category == params['category']}" do
           = category
-          %span#counter-by-category.label.label-info{id: category.parameterize}= current_user.tasks.todo.where(category: category).count
+          %span.counter-by-category.label.label-info{data: { category: category }}= current_user.tasks.todo.where(category: category).count
       = link_to uncategorized_tasks_path, class: "list-group-item #{'active' if action_name == 'uncategorized'}" do
         = "Uncategorized"
         %span#counter-by-category.label.label-info{id: 'uncategorized'}= current_user.tasks.todo.uncategorized.count

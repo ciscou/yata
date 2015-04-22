@@ -12,7 +12,7 @@ $("#task_<%= @task.id %>").replaceWith($("<%= j render @task %>"));
   <% end %>
 <% end %>
 <% current_user.categories.each do |category| %>
-  $('#counter-by-category_<%= category.parameterize %>').text("<%= current_user.tasks.where(category: category).todo.count %>");
+  $('.counter-by-category[data-category="<%= j category %>"]').text("<%= current_user.tasks.where(category: category).todo.count %>");
 <% end %>
 $('#counter-by-category_uncategorized').text("<%= current_user.tasks.uncategorized.todo.count %>");
 $('#counter-by-category_all').text("<%= current_user.tasks.todo.count %>");
