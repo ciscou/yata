@@ -16,8 +16,7 @@ class User < ActiveRecord::Base
 
   def category_names
     tasks
-      .select('distinct(category_name)')
-      .reorder(nil).where.not(category_name: [nil, ''])
-      .pluck(:category_name)
+      .select('distinct(category_name)').reorder(nil)
+      .map(&:category_name).select(&:present?)
   end
 end
