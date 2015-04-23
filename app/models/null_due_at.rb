@@ -23,6 +23,18 @@ class NullDueAt
     self
   end
 
+  def year
+    -1
+  end
+
+  def month
+    -1
+  end
+
+  def day
+    -1
+  end
+
   def wday
     999
   end
