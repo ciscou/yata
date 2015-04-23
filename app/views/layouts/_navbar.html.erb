@@ -14,11 +14,7 @@
         </span>
         Yata
       <% end %>
-    </div>
-    <div class="collapse navbar-collapse">
-      <% if user_signed_in? %>
-        <%= link_to icon_and_text("plus", "New task"), new_task_path(category: params[:category]), class: "btn btn-success navbar-btn navbar-right" %>
-      <% end %>
+      <%= link_to icon_and_text("plus", "New task"), new_task_path(category: params[:category]), class: "btn btn-success navbar-btn navbar-left" %>
     </div>
   </div>
 </nav>
