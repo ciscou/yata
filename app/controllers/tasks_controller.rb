@@ -76,7 +76,7 @@ class TasksController < ApplicationController
   def destroy
     current_user.tasks.destroy(params[:id])
 
-    redirect_to :back, notice: "Task was successfully deleted"
+    redirect_to tasks_url, notice: "Task was successfully deleted"
   end
 
   def mark_as_done
@@ -107,7 +107,7 @@ class TasksController < ApplicationController
   def clear
     current_user.clear_done_tasks
 
-    redirect_to tasks_url, notice: "Done tasks were successfully cleared"
+    redirect_to done_tasks_url, notice: "Done tasks were successfully cleared"
   end
 
   private
