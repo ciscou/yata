@@ -1,7 +1,7 @@
 <% if @tasks.any? %>
   <% @tasks.group_by { |task| task.due_at.to_date }.each do |date, tasks| %>
     <strong><%= date.strftime("%A, %B %e, %Y") %></strong>
-    <table class="table table-striped wday-<%= date.wday %> <%= "bank-holiday" if bank_holidays.include?([date.year, date.month, date.day]) %>">
+    <table class="table table-striped wday-<%= date.wday %> <%= "bank-holiday" if bank_holidays.include?([date.year, date.month, date.day]) %> <%= "past" if date.past? %>">
       <tbody>
         <%= render tasks %>
       </tbody>

@@ -16,6 +16,13 @@ table.wday-6 {
   border-left: 5px solid $gray-lighter;
 }
 
+table.bank-holiday.past,
+table.wday-0.past,
+table.wday-5.past,
+table.wday-6.past {
+  border-left-color: $state-danger-border;
+}
+
 .task {
   a.mark-as-done, a.unmark-as-done {
     display: none;
