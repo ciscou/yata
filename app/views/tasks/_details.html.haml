@@ -51,7 +51,10 @@
     %dd
       %p
         = link_to task.image.url, target: '_blank' do
-          = cl_image_tag task.image, class: 'img-responsive', width: 600, height: 480, crop: :thumb, gravity: :center
+          - if %w[.gif .png .jpg].include? File.extname(task.image.url).downcase
+            = cl_image_tag task.image, class: 'img-responsive', width: 600, height: 480, crop: :thumb, gravity: :center
+          - else
+            = File.basename(task.image.url)
 
   - if task.description.present?
     %dt= icon_and_text 'align-left', "Description"
