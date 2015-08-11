@@ -7,6 +7,8 @@ gem 'rails', '4.0.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 gem 'pg'
 gem 'redis'
 gem 'bootstrap-sass', '~> 3.3.0'
