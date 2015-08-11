@@ -39,6 +39,10 @@ class NullDueAt
     999
   end
 
+  def as_json
+    nil
+  end
+
   def hash
     [self.class.name, wday].hash
   end
