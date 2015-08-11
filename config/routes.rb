@@ -25,5 +25,9 @@ Yata::Application.routes.draw do
     resource :accept, only: [:show, :create]
   end
 
+  namespace :api do
+    resources :tasks
+  end
+
   root to: "tasks#index"
 end

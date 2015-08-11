@@ -114,6 +114,10 @@ class Task < ActiveRecord::Base
     update_attributes!(token: SecureRandom.hex) unless token?
   end
 
+  def as_json(opts = {})
+    super(opts.merge(include: :sub_tasks))
+  end
+
   private
 
   def periodicity
