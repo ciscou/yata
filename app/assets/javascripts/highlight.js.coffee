@@ -6,4 +6,4 @@ $ ->
 
   $container.addClass('highlighted')
   f = -> $container.removeClass('highlighted')
-  setTimeout f, 1000
+  setTimeout f, 800

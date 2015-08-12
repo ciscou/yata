@@ -76,11 +76,11 @@ tr.task.todo.delayed {
 }
 
 .task {
-  transition: background-color .5s ease-out
+  transition: background-color .4s ease
 }
 
 .task.highlighted {
-  background-color: yellow !important;
+  background-color: #ffffcc !important;
 }
 
 tr.task td.due_at_and_actions {
