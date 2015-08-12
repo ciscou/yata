@@ -75,6 +75,14 @@ tr.task.todo.delayed {
   }
 }
 
+.task {
+  transition: background-color .5s ease-out
+}
+
+.task.highlighted {
+  background-color: yellow !important;
+}
+
 tr.task td.due_at_and_actions {
   white-space: nowrap;
   text-align: right;
