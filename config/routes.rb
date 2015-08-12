@@ -13,12 +13,17 @@ Yata::Application.routes.draw do
       get :done
       get :by_category
       get :uncategorized
+
+      delete :clear
     end
+
+    member do
+      patch :mark_as_done
+      patch :unmark_as_done
+    end
+
     resources :sub_tasks, only: :update
     resources :shares, only: :create
-    delete :clear, on: :collection
-    patch :mark_as_done, on: :member
-    patch :unmark_as_done, on: :member
   end
 
   resources :shares, only: [] do
@@ -26,7 +31,12 @@ Yata::Application.routes.draw do
   end
 
   namespace :api do
-    resources :tasks
+    resources :tasks do
+      member do
+        post :mark_as_done
+        post :unmark_as_done
+      end
+    end
   end
 
   root to: "tasks#index"
