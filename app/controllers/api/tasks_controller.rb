@@ -34,4 +34,10 @@ class Api::TasksController < ApplicationController
     task.unmark_as_done!
     render json: task
   end
+
+  private
+
+  def task_attributes
+    params.require(:task).permit!
+  end
 end
