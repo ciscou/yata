@@ -6,6 +6,12 @@
       "sizes": "72x72",
       "type": "image/png",
       "density": 1.5
+    },
+    {
+      "src": "apple-touch-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": 4
     }
   ],
   "start_url": "tasks",
