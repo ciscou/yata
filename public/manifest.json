@@ -1,0 +1,14 @@
+{
+  "name": "Yata",
+  "icons": [
+    {
+      "src": "apple-touch-icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "density": 1.5
+    }
+  ],
+  "start_url": "tasks",
+  "display": "standalone",
+  "orientation": "landscape"
+}
