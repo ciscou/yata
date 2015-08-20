@@ -27,6 +27,5 @@
     }
   ],
   "start_url": "tasks",
-  "display": "standalone",
-  "orientation": "landscape"
+  "display": "standalone"
 }
