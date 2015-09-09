@@ -4,6 +4,7 @@ class SharesController < ApplicationController
     @task.ensure_token!
     TaskMailer.share(@task, current_user.email, params[:email]).deliver
 
-    redirect_to @task, notice: "Your task was shared successfully!"
+    flash[:scroll_to] = @task.id
+    redirect_to tasks_url
   end
 end

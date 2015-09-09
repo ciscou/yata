@@ -36,5 +36,9 @@
 
     <%= javascript_include_tag "application" %>
 
+    <script type='text/javascript'>
+      new Highlighter().highlight("<%= flash[:scroll_to] %>");
+    </script>
+
   </body>
 </html>

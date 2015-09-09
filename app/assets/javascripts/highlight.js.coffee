@@ -1,9 +1,12 @@
-$ ->
-  return unless id = location.hash
+class @Highlighter
+  highlight: (id) ->
+    return unless id
 
-  $container = $(id)
-  return unless $container.length > 0
+    $container = $("#task_#{id}")
+    return unless $container.length > 0
 
-  $container.addClass('highlighted')
-  f = -> $container.removeClass('highlighted')
-  setTimeout f, 800
+    $('html, body').animate({scrollTop: $container.offset().top - 50}, '500', 'swing')
+
+    $container.addClass('highlighted')
+    f = -> $container.removeClass('highlighted')
+    setTimeout f, 800

@@ -55,7 +55,8 @@ class TasksController < ApplicationController
     @task = current_user.tasks.create(task_attributes)
 
     if @task.errors.empty?
-      redirect_to tasks_url(anchor: "task_#{@task.id}")
+      flash[:scroll_to] = @task.id
+      redirect_to tasks_url
     else
       flash.now.alert = "Oops, failed to create task"
       render action: "new"
@@ -66,7 +67,8 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
 
     if @task.update_attributes(task_attributes)
-      redirect_to tasks_url(anchor: "task_#{@task.id}")
+      flash[:scroll_to] = @task.id
+      redirect_to tasks_url
     else
       flash.now.alert = "Oops, failed to update task"
       render action: "edit"

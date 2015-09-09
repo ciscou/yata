@@ -7,7 +7,8 @@ class AcceptsController < ApplicationController
 
   def create
     current_user.tasks << @task
-    redirect_to @task, notice: "Shared task accepted successfully"
+    flash[:scroll_to] = @task.id
+    redirect_to tasks_url if current_user.tasks.include?(@task)
   end
 
   private
@@ -17,6 +18,7 @@ class AcceptsController < ApplicationController
   end
 
   def cannot_accept_twice
-    redirect_to @task, alert: "You've already accepted that task!" if current_user.tasks.include?(@task)
+    flash[:scroll_to] = @task.id
+    redirect_to tasks_url if current_user.tasks.include?(@task)
   end
 end
