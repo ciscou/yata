@@ -40,7 +40,7 @@
               = f.select :repeat_every, repeat_every_options, { include_blank: "Only once" }, class: 'form-control'
 
           .form-group
-            = label_tag :share_to, class: 'control-label'
+            = label_tag :share_to, nil, class: 'control-label'
             .input-group
               .input-group-addon= icon('share-alt')
               = email_field_tag :share_to, @share_to, placeholder: "someone@example.com", class: 'form-control'
