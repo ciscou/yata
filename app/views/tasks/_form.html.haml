@@ -39,6 +39,12 @@
               .input-group-addon= icon('repeat')
               = f.select :repeat_every, repeat_every_options, { include_blank: "Only once" }, class: 'form-control'
 
+          .form-group
+            = label_tag :share_to, class: 'control-label'
+            .input-group
+              .input-group-addon= icon('share-alt')
+              = email_field_tag :share_to, @share_to, placeholder: "someone@example.com", class: 'form-control'
+
     #sub-tasks.tab-pane
       .row
         .col-md-10.col-lg-8

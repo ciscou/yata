@@ -53,8 +53,14 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.create(task_attributes)
+    @share_to = params[:share_to]
 
     if @task.errors.empty?
+      if @share_to.present?
+        @task.ensure_token!
+        TaskMailer.share(@task, current_user.email, @share_to).deliver
+      end
+
       flash[:scroll_to] = @task.id
       redirect_to tasks_url
     else
@@ -65,8 +71,14 @@ class TasksController < ApplicationController
 
   def update
     @task = current_user.tasks.find(params[:id])
+    @share_to = params[:share_to]
 
     if @task.update_attributes(task_attributes)
+      if @share_to.present?
+        @task.ensure_token!
+        TaskMailer.share(@task, current_user.email, @share_to).deliver
+      end
+
       flash[:scroll_to] = @task.id
       redirect_to tasks_url
     else
