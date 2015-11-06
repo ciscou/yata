@@ -10,6 +10,7 @@ module TasksHelper
       "Six hours before"    => 60 * 6,
       "Twelve hours before" => 60 * 12,
       "One day before"      => 60 * 24,
+      "Two days before"     => 60 * 24 * 2,
       "One week before"     => 60 * 24 * 7
     }
   end
