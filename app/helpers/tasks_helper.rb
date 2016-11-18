@@ -17,6 +17,8 @@ module TasksHelper
 
   def repeat_every_options
     [
+      "8 hours",
+      "12 hours",
       "1 day",
       "1 week",
       "2 weeks",
