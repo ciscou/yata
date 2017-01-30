@@ -64,7 +64,7 @@ class Task < ActiveRecord::Base
     $redis.publish "sockjs-demo:yata:task", { id: id, done: true }.to_json
 
     if repeat_every?
-      self.due_at += periodicity
+      self.due_at += periodicity until due_at.future?
       save!
       self.done = true # after saving on purpose
     else
