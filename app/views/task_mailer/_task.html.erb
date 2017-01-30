@@ -6,9 +6,9 @@
   </p>
 <% end %>
 
-<% if task.sub_tasks.any? %>
+<% if task.todo_sub_tasks.any? %>
   <ul>
-    <% task.sub_tasks.each do |sub_task| %>
+    <% task.todo_sub_tasks.each do |sub_task| %>
       <li><%= sub_task.name %></li>
     <% end %>
   </ul>
